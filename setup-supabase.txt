@@ -1,0 +1,17 @@
+RFN ADMIN + ORDERS + INVENTORY SETUP
+
+1) Open Supabase > SQL Editor and run: supabase/schema.sql
+2) Supabase > Authentication > Users: create your admin user/email and password.
+3) Edit admin/config.js:
+   SUPABASE_URL = your Project URL
+   SUPABASE_ANON_KEY = your publishable/anon key
+4) In Netlify > Site configuration > Environment variables add:
+   SUPABASE_URL
+   SUPABASE_SERVICE_ROLE_KEY
+   ADMIN_EMAILS (your admin email; multiple emails separated by commas)
+5) Deploy the complete folder to Netlify.
+6) Open: https://YOUR-SITE.netlify.app/admin/login.html
+
+SECURITY
+- Never place SUPABASE_SERVICE_ROLE_KEY in admin/config.js or any HTML file.
+- Only the anon/publishable key belongs in admin/config.js.

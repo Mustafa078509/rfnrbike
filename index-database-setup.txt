@@ -1,0 +1,20 @@
+RFN INDEX + SUPABASE PRODUCTS SETUP
+
+1. Open Supabase > SQL Editor.
+2. Run: supabase/CONNECT-INDEX-TO-PRODUCTS.sql
+3. In Netlify > Site configuration > Environment variables, confirm:
+   SUPABASE_URL
+   SUPABASE_SERVICE_ROLE_KEY
+4. Deploy this entire ZIP.
+5. Open the site and refresh.
+
+How it works:
+- index.html calls /api/store-products?product_type=bike
+- Netlify Function reads active bike rows from public.products
+- price, stock, image, description, colors and parts link come from Supabase
+- stock_quantity = 0 disables Add Bike To Cart and shows OUT OF STOCK
+- admin Inventory changes appear on index.html after refresh
+
+Important:
+- Keep SUPABASE_SERVICE_ROLE_KEY only in Netlify Environment Variables.
+- Never put the service-role key in index.html or admin/config.js.

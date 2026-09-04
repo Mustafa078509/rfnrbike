@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dealer Login — RFN USA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/auth.css">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-visual" aria-label="RFN dealer portal">
+      <a class="auth-logo" href="/login.html"><img src="/assets/rfn-logo.png" alt="RFN USA"></a>
+      <div class="auth-intro">
+        <p class="auth-kicker">RFN Dealer Network</p>
+        <h1>Parts access starts here.</h1>
+        <p>Sign in with your dealer account to browse bikes, find parts, and prepare your next order.</p>
+      </div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-card">
+        <h2>Welcome back</h2>
+        <p class="auth-description">Enter the email and password used for your RFN dealer account.</p>
+
+        <form id="login-form" novalidate>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" autocomplete="email" placeholder="dealer@company.com" required>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Enter your password" required>
+          </div>
+          <button class="primary-button" id="submit-button" type="submit">Sign in</button>
+          <div id="status" class="status" role="alert" aria-live="polite"></div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { AuthError, MissingIdentityError, getUser, handleAuthCallback, login } from './identity-client.js';
+
+    let callbackUser = null;
+    try {
+      const callback = await handleAuthCallback();
+      callbackUser = callback?.user ?? null;
+    } catch {
+      callbackUser = null;
+    }
+
+    const currentUser = callbackUser ?? await getUser();
+    if (currentUser) window.location.replace('/index.html');
+
+    const form = document.querySelector('#login-form');
+    const button = document.querySelector('#submit-button');
+    const status = document.querySelector('#status');
+
+    function showStatus(message, type = 'error') {
+      status.textContent = message;
+      status.className = `status ${type}`;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = document.querySelector('#email').value.trim();
+      const password = document.querySelector('#password').value;
+
+      if (!email || !password) {
+        showStatus('Enter your email and password.');
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Signing in…';
+      status.className = 'status';
+
+      try {
+        await login(email, password);
+        const params = new URLSearchParams(window.location.search);
+        const returnTo = params.get('returnTo');
+        const destination = returnTo?.startsWith('/') && !returnTo.startsWith('//') ? returnTo : '/index.html';
+        window.location.replace(destination);
+      } catch (error) {
+        if (error instanceof MissingIdentityError) {
+          showStatus('Dealer login is not available yet. Please try again shortly.');
+        } else if (error instanceof AuthError && error.status === 401) {
+          showStatus('The email or password is incorrect.');
+        } else if (error instanceof AuthError) {
+          showStatus(error.message);
+        } else {
+          showStatus('Unable to sign in right now. Please try again.');
+        }
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Sign in';
+      }
+    });
+  </script>
+</body>
+</html>

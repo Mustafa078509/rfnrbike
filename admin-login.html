@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login — RFN USA</title>
+  <link rel="stylesheet" href="/auth.css">
+</head>
+<body>
+  <main class="auth-shell">
+    <section class="auth-visual">
+      <a class="auth-logo" href="/login.html"><img src="/assets/rfn-logo.png" alt="RFN USA"></a>
+      <div class="auth-intro"><p class="auth-kicker">RFN USA Administration</p><h1>Inventory control.</h1><p>Authorized administrators only.</p></div>
+    </section>
+    <section class="auth-panel"><div class="auth-card">
+      <h2>Admin login</h2><p class="auth-description">Use the Supabase account assigned the admin role.</p>
+      <form id="form">
+        <div class="field"><label for="email">Email</label><input id="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="password">Password</label><input id="password" type="password" required autocomplete="current-password"></div>
+        <button class="primary-button" id="button">Sign in to dashboard</button>
+        <div id="status" class="status" role="alert"></div>
+      </form>
+      <p class="auth-switch"><a href="/login.html">Dealer login</a></p>
+    </div></section>
+  </main>
+<script type="module">
+import { AuthError, getUser, login } from './identity-client.js?v=old-login-1';
+
+const currentUser = await getUser();
+if (currentUser) window.location.replace('/dashboard.html?v=old-login-1');
+
+const form = document.querySelector('#form');
+const emailInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
+const button = document.querySelector('#button');
+const status = document.querySelector('#status');
+
+function show(message, type = 'error') {
+  status.textContent = message;
+  status.className = `status ${type}`;
+}
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  button.disabled = true;
+  button.textContent = 'Signing in…';
+  show('');
+
+  try {
+    await login(emailInput.value.trim(), passwordInput.value);
+    window.location.replace('/dashboard.html?v=old-login-1');
+  } catch (error) {
+    console.error(error);
+    if (error instanceof AuthError && error.status === 401) {
+      show('The email or password is incorrect.');
+    } else {
+      show(error.message || 'Unable to sign in.');
+    }
+    button.disabled = false;
+    button.textContent = 'Sign in to dashboard';
+  }
+});
+</script>
+</body></html>

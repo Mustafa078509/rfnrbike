@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>RFN USA — Bikes &amp; Parts</title>
+<style>html{visibility:hidden}
+.selected-stock-state{font-weight:800;margin-left:6px;color:#17823b}.selected-stock-state.is-out{color:#b3151b}.color-btn.out-stock-color{position:relative;box-shadow:0 0 0 2px #b3151b;opacity:.68}.color-btn.out-stock-color::after{content:"×";position:absolute;inset:-5px;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(179,21,27,.72);border-radius:50%;font-size:18px;font-weight:900}
+</style><script src="/auth-guard.js" type="module"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f6f7;
+    --surface2: #ededf0;
+    --border: #e0e0e4;
+    --accent: #d81e25;
+    --accent2: #a8141a;
+    --accent-blue: #1d4ed8;
+    --accent-blue2: #1e3a8a;
+    --text: #16161a;
+    --muted: #6b6b73;
+    --success: #27ae60;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+  .nav-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand { color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
+  .nav-link {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-link:hover, .nav-link.active { color: var(--accent-blue); }
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, #ffffff 0%, #eaf0fd 45%, #fbdedd 100%);
+    border-bottom: 1px solid var(--border);
+    min-height: 82vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: 'RFN';
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 420px;
+    color: rgba(216,30,37,0.03);
+    letter-spacing: -10px;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+  }
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow, .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 150px);
+    letter-spacing: 4px;
+    line-height: 0.88;
+    color: var(--text);
+    margin-bottom: 32px;
+  }
+  .hero h1 span { color: var(--accent-blue); }
+  .hero-desc {
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 42px;
+  }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary, .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    padding: 14px 30px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: 0.15s;
+  }
+  .btn-primary { background: var(--accent); color: white; border: none; }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+  .stats-bar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 24px 40px; }
+  .stats-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); }
+  .stat { padding: 16px 24px; border-right: 1px solid var(--border); text-align: center; }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 40px; letter-spacing: 2px; color: var(--accent2); line-height: 1; margin-bottom: 6px; }
+  .stat-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 60px); letter-spacing: 3px; line-height: 1; margin-bottom: 20px; }
+  .section-desc { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 650px; margin-bottom: 40px; }
+  .bikes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 14px; }
+  .bike-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 26px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    display: block;
+    border-radius: 8px;
+  }
+  .bike-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+  .preorder-tag { position:absolute; top:14px; right:14px; background:#111; color:#fff; border:1px solid var(--accent); border-radius:999px; padding:6px 12px; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:800; z-index:2; }
+  .outofstock-tag { position:absolute; top:14px; right:14px; background:#b3151b; color:#fff; border:1px solid #7f1015; border-radius:999px; padding:6px 12px; font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:800; z-index:2; }
+  .out-stock-btn { background:#b8b8bd!important; color:#fff!important; cursor:not-allowed!important; }
+
+  .bike-thumb { width: 100%; height: 190px; object-fit: contain; background: #f2f2f4; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 20px; display: block; }
+  .bike-card-name { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 2px; color: var(--text); margin-bottom: 8px; line-height: 1; }
+  .bike-card-sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; line-height: 1.5; }
+  .color-options { display:flex; gap:10px; margin: 16px 0; align-items:center; }
+  .color-btn { width:34px; height:34px; border-radius:50%; border:2px solid #ddd; cursor:pointer; box-shadow: 0 0 0 1px rgba(0,0,0,0.03); }
+  .color-btn.active { border:3px solid var(--accent); }
+  .selected-color { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .bike-price-box { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin:16px 0 20px; }
+  .price-card { background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px; text-align:center; }
+  .price-card span { display:block; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom: 4px; }
+  .price-card b { font-family:'Bebas Neue', sans-serif; font-size:28px; letter-spacing:1px; color:var(--accent-blue); }
+  .price-card.dealer b { color:var(--accent); }
+  .bike-card .btn-primary { width: 100%; }
+  .parts-btn {
+    width: 100%;
+    margin-top: 10px;
+    display: inline-flex;
+    justify-content: center;
+  }
+  .spec-chip { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 5px 12px; font-weight: 500; display: inline-block; margin: 4px 6px 4px 0; }
+  .bike-card-cta { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-top: 18px; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .feature-item { background: var(--surface); border: 1px solid var(--border); padding: 32px 28px; }
+  .feature-icon { font-size: 28px; margin-bottom: 16px; display: block; }
+  .feature-title { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; margin-bottom: 10px; color: var(--text); }
+  .feature-desc { color: var(--muted); font-size: 13px; line-height: 1.7; }
+  .toast { position: fixed; bottom: 28px; right: 28px; background: var(--success); color:#fff; padding:14px 22px; border-radius:8px; font-size:14px; font-weight:500; opacity:0; transform:translateY(80px); transition:.25s; z-index:9999; }
+  .toast.show { opacity:1; transform:translateY(0); }
+  .site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 48px 40px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+  .footer-logo { height: 42px; width: auto; display: block; margin-bottom: 16px; }
+  .footer-tagline { color: var(--muted); font-size: 13px; line-height: 1.6; max-width: 280px; }
+  .footer-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 14px; }
+  .footer-link { display: block; font-size: 13px; color: var(--muted); text-decoration: none; line-height: 2; transition: color 0.15s; }
+  .footer-link:hover { color: var(--text); }
+  .footer-bottom { max-width: 1200px; margin: 32px auto 0; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
+  @media(max-width:860px){ .features-grid,.footer-inner{ grid-template-columns:1fr; } }
+  @media(max-width:700px){ .stats-inner{ grid-template-columns: 1fr 1fr; } .nav-links{gap:10px;} }
+  @media(max-width:500px){ .bikes-grid{ grid-template-columns: 1fr; } .hero-inner,.container{padding-left:24px;padding-right:24px;} .stats-bar{padding:16px 24px;} }
+
+
+  /* ── BIKE CATEGORY DESIGN ── */
+  .bike-categories { margin-top: 46px; display: flex; flex-direction: column; gap: 68px; }
+  .category-block { position: relative; }
+  .category-header {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 0 0 18px 18px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+  }
+  .category-header::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 18px;
+    width: 5px;
+    background: var(--accent);
+    border-radius: 4px;
+  }
+  .category-kicker {
+    display: block;
+    color: var(--accent);
+    font-size: 10px;
+    line-height: 1;
+    letter-spacing: 3.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .category-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(42px, 5vw, 64px);
+    letter-spacing: 2px;
+    line-height: .9;
+    color: var(--text);
+  }
+  .category-desc {
+    max-width: 540px;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .category-count {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--muted);
+    background: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .category-count b {
+    display: inline-grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--text);
+    color: #fff;
+    font-size: 11px;
+  }
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .category-grid.two-up {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 820px;
+  }
+  .category-grid .bike-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 0 10px 28px rgba(20, 20, 25, .05);
+  }
+  .category-grid .bike-card:hover {
+    border-color: rgba(216,30,37,.65);
+    box-shadow: 0 16px 34px rgba(20, 20, 25, .09);
+  }
+  .category-grid .bike-thumb { height: 170px; }
+  .category-grid .bike-card-name { font-size: 31px; }
+  .category-grid .bike-card-sub { min-height: 40px; }
+  .category-grid .bike-price-box { margin-top: auto; }
+  .category-grid .parts-btn { min-height: 44px; }
+
+  @media(max-width:1050px){
+    .category-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  }
+  @media(max-width:700px){
+    .bike-categories { gap: 52px; margin-top: 34px; }
+    .category-header { align-items: flex-start; flex-direction: column; padding-left: 14px; }
+    .category-header::before { bottom: 18px; }
+    .category-grid, .category-grid.two-up { grid-template-columns: 1fr; max-width: none; }
+    .category-grid .bike-thumb { height: 210px; }
+  }
+</style>
+
+<style id="rfn-white-red-redesign">
+:root{
+  --accent:#e21d24;
+  --accent2:#b9151b;
+  --text:#121212;
+  --muted:#666;
+  --surface:#fff;
+  --surface2:#f8f8f8;
+  --border:#e8e8e8;
+}
+body{background:#fff;color:var(--text)}
+.nav-bar{
+  background:rgba(255,255,255,.97);
+  padding:16px 38px;
+  box-shadow:0 2px 14px rgba(0,0,0,.05);
+  border-bottom:1px solid #eee;
+}
+.nav-brand img{height:34px!important}
+.nav-links{gap:28px}
+.nav-link{
+  color:#1c1c1c;
+  font-weight:700;
+  letter-spacing:1.3px;
+  font-size:11px;
+}
+.nav-link:hover,.nav-link.active{color:var(--accent)}
+.nav-link.active{position:relative}
+.nav-link.active:after{
+  content:"";position:absolute;left:0;right:0;bottom:-18px;height:3px;background:var(--accent)
+}
+.nav-bar>a.nav-link:last-child{
+  background:var(--accent);color:#fff!important;padding:12px 18px;border-radius:3px
+}
+
+/* HERO */
+.hero{
+  min-height:430px;
+  background:
+    linear-gradient(90deg,#fff 0%,#fff 46%,rgba(255,255,255,.90) 60%,rgba(255,255,255,.42) 100%),
+    radial-gradient(circle at 82% 50%,rgba(226,29,36,.10),transparent 34%),
+    #f8f8f8;
+  border-bottom:8px solid var(--accent);
+}
+.hero::before{display:none}
+.hero-inner.hero-redesign{
+  width:100%;max-width:1320px;padding:54px 44px;display:grid;
+  grid-template-columns:minmax(0, .9fr) minmax(420px,1.1fr);align-items:center;gap:22px;
+}
+.hero-copy{position:relative;z-index:3}
+.hero-eyebrow{font-size:11px;letter-spacing:3px;font-weight:800;color:var(--accent);margin-bottom:12px}
+.hero h1{
+  font-size:clamp(66px,8.5vw,112px);line-height:.82;margin:0 0 14px;
+  letter-spacing:1px;color:#111
+}
+.hero h1 span{color:var(--accent)}
+.hero h2{
+  font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;margin-bottom:18px;color:#1b1b1b
+}
+.hero-desc{font-size:15px;max-width:480px;color:#555;line-height:1.65;margin-bottom:24px}
+.hero-cta .btn-primary{background:linear-gradient(180deg,#ef2c32,#d7171d);box-shadow:0 8px 18px rgba(226,29,36,.20)}
+.hero-cta .btn-outline{border:1px solid #bbb;background:#fff}
+.hero-slashes{color:var(--accent);font-weight:900;letter-spacing:4px;margin-top:28px;font-size:18px}
+.hero-bike-wrap{
+  min-height:320px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden
+}
+.hero-bike-wrap:after{
+  content:"";position:absolute;left:8%;right:5%;bottom:20px;height:24px;
+  background:radial-gradient(ellipse,rgba(0,0,0,.22),transparent 68%);filter:blur(5px)
+}
+.hero-bike-glow{
+  position:absolute;width:430px;height:260px;border-radius:50%;
+  background:radial-gradient(circle,rgba(226,29,36,.16),rgba(226,29,36,0) 70%)
+}
+.hero-bike{
+  position:relative;z-index:2;width:min(650px,100%);max-height:360px;object-fit:contain;
+  filter:drop-shadow(0 18px 18px rgba(0,0,0,.18))
+}
+
+/* Hide the old stats and generic section heading so categories lead the page */
+.stats-bar{display:none}
+#bike-sales{padding:28px 0 54px;background:#fff}
+#bike-sales>.container>.section-eyebrow,
+#bike-sales>.container>.section-title,
+#bike-sales>.container>.section-desc{display:none}
+.container{max-width:1380px;padding:0 28px}
+
+/* CATEGORY LAYOUT */
+.bike-categories{margin-top:0;gap:18px}
+.category-block{
+  border-top:1px solid #eee;border-bottom:1px solid #eee;
+  padding:26px 0;background:#fff;display:grid;
+  grid-template-columns:235px 1fr;gap:24px;align-items:stretch
+}
+.category-header{
+  margin:0;padding:18px 18px 18px 28px;border:0;
+  display:flex;flex-direction:column;align-items:flex-start;justify-content:center;
+  background:linear-gradient(135deg,#fff 0%,#fff 76%,#fff3f3 100%);
+  min-height:100%;
+}
+.category-header::before{
+  top:18px;bottom:auto;height:48px;width:6px;background:var(--accent);border-radius:0
+}
+.category-kicker{
+  color:var(--accent);font-size:9px;letter-spacing:2.8px;margin-bottom:10px
+}
+.category-title{
+  display:flex;align-items:center;gap:11px;font-size:44px!important;line-height:.95;letter-spacing:1px
+}
+.category-icon{
+  width:48px;height:48px;display:inline-grid;place-items:center;
+  border-radius:50%;background:var(--accent);color:#fff;
+  font-family:'DM Sans',sans-serif;font-size:21px;font-weight:800;flex:0 0 auto
+}
+.category-desc{font-size:12px;line-height:1.6;margin:16px 0 18px;color:#575757}
+.category-count{
+  border:1px solid var(--accent);color:var(--accent);border-radius:4px;background:#fff;
+  padding:8px 12px;font-weight:800
+}
+.category-count b{background:transparent;color:var(--accent);width:auto;height:auto;font-size:11px}
+
+.category-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.category-grid.two-up{
+  grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;
+  padding-right:34%;
+  background:
+    linear-gradient(90deg,#fff 0%,#fff 66%,rgba(255,255,255,.25) 100%),
+    url('/assets/rally_gray.png') right center/38% auto no-repeat;
+}
+
+/* PRODUCT CARDS */
+.category-grid .bike-card{
+  padding:14px;background:#fff;border:1px solid #e4e4e4;border-radius:5px;
+  box-shadow:0 5px 16px rgba(0,0,0,.045);transform:none
+}
+.category-grid .bike-card:hover{
+  transform:translateY(-3px);border-color:#f0a3a6;box-shadow:0 12px 24px rgba(0,0,0,.08)
+}
+.category-grid .bike-thumb{
+  height:145px;background:#fff;border:0;margin-bottom:12px;object-fit:contain
+}
+.category-grid .bike-card-name{
+  font-family:'DM Sans',sans-serif;font-size:16px;font-weight:800;letter-spacing:0;line-height:1.2;margin-bottom:6px
+}
+.category-grid .bike-card-sub{display:none}
+.color-options{margin:9px 0 7px;gap:6px}
+.color-btn{width:23px;height:23px}
+.selected-color{font-size:9px;letter-spacing:1px;margin-bottom:8px}
+.bike-price-box{
+  display:block;margin:8px 0 12px;border:0
+}
+.price-card{display:block}
+.price-card.dealer{
+  display:block;padding:0;border:0;text-align:left;background:transparent
+}
+.price-card.dealer span{display:block}
+.price-card.dealer b{
+  font-family:'DM Sans',sans-serif;font-size:16px;font-weight:800;color:var(--accent)
+}
+.btn-primary,.btn-outline{border-radius:3px}
+.category-grid .bike-card .btn-primary{
+  min-height:38px;padding:10px 12px;font-size:9px;letter-spacing:1.2px;background:var(--accent)
+}
+.category-grid .parts-btn{
+  min-height:36px;padding:9px 10px;margin-top:7px;font-size:8.5px;letter-spacing:1px;
+  border-color:#bbb;background:#fff;color:#222
+}
+.preorder-tag,.outofstock-tag{
+  top:10px;right:10px;padding:5px 8px;border-radius:3px;font-size:8px;letter-spacing:1px
+}
+
+/* FEATURES */
+.section:not(#bike-sales){
+  padding:28px 0;background:#fafafa;border-top:1px solid #eee;border-bottom:0
+}
+.section:not(#bike-sales) .section-eyebrow,
+.section:not(#bike-sales) .section-title{display:none}
+.features-grid{grid-template-columns:repeat(3,1fr);gap:0}
+.feature-item{
+  text-align:center;background:#fafafa;border:0;border-right:1px solid #e5e5e5;padding:20px
+}
+.feature-item:last-child{border-right:0}
+.feature-icon{color:var(--accent);font-size:32px;margin-bottom:8px}
+.feature-title{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:800;letter-spacing:.5px}
+.feature-desc{font-size:11px}
+
+/* FOOTER */
+.site-footer{
+  background:linear-gradient(180deg,#ee2027,#ce1117);border:0;padding:34px 40px;color:#fff
+}
+.footer-tagline,.footer-link,.footer-bottom{color:rgba(255,255,255,.88)}
+.footer-label{color:#fff;font-weight:800}
+.footer-link:hover{color:#fff}
+.footer-logo{filter:brightness(0) invert(1)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.25)}
+
+@media(max-width:1050px){
+  .hero-inner.hero-redesign{grid-template-columns:1fr 1fr;padding:46px 28px}
+  .category-block{grid-template-columns:190px 1fr}
+  .category-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .category-grid.two-up{padding-right:0;background:none}
+}
+@media(max-width:760px){
+  .nav-bar{padding:12px 16px;gap:10px;flex-wrap:wrap}
+  .nav-links{gap:13px}
+  .nav-link{font-size:9px}
+  .nav-link.active:after{display:none}
+  .hero{min-height:auto}
+  .hero-inner.hero-redesign{grid-template-columns:1fr;padding:38px 22px 20px}
+  .hero h1{font-size:72px}
+  .hero-bike-wrap{min-height:240px}
+  .hero-bike{max-height:260px}
+  .category-block{grid-template-columns:1fr;padding-top:18px}
+  .category-header{padding:16px 18px 10px 24px}
+  .category-grid,.category-grid.two-up{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 12px}
+  .category-title{font-size:38px!important}
+}
+@media(max-width:520px){
+  .category-grid,.category-grid.two-up{grid-template-columns:1fr}
+  .category-grid .bike-thumb{height:190px}
+  .features-grid{grid-template-columns:1fr}
+  .feature-item{border-right:0;border-bottom:1px solid #e5e5e5}
+}
+</style>
+
+
+<style id="price-label-layout-fix">
+.category-grid .bike-price-box{display:flex;gap:14px;align-items:center;margin:8px 0 12px;}
+.category-grid .price-card,.category-grid .price-card.dealer{display:flex;align-items:baseline;gap:6px;padding:0;border:0;background:transparent;text-align:left;}
+.category-grid .price-card span,.category-grid .price-card.dealer span{display:inline;margin:0;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:700;}
+.category-grid .price-card b,.category-grid .price-card.dealer b{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:800;}
+.category-grid .price-card b{color:var(--accent-blue);}
+.category-grid .price-card.dealer b{color:var(--accent);}
+</style>
+
+<style id="e8-black-out-of-stock-only">
+.black-stock-label{
+  display:inline-flex;
+  align-items:center;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:1px;
+  color:#b3151b;
+  margin-left:2px;
+  white-space:nowrap;
+}
+.out-stock-color{
+  opacity:.45;
+  position:relative;
+}
+</style>
+
+</head>
+<body>
+<nav class="nav-bar">
+<a class="nav-brand" href="/"><img alt="RFN USA" src="assets/rfn-logo.png" style="height:26px;width:auto;display:block"/></a>
+<div class="nav-links">
+<a class="nav-link active" href="/">HOME</a>
+<a class="nav-link" href="#bike-sales">BIKES</a>
+<a class="nav-link cart-link" href="cart.html">CART 🛒 <span class="cart-count">0</span></a>
+<a class="nav-link" href="#" onclick="logout();return false;">LOGOUT</a>
+</div>
+<a class="nav-link" href="/my-orders.html">MY ORDERS</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner hero-redesign">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">RFN USA · ELECTRIC PERFORMANCE</div>
+      <h1><span>RFN</span> BIKES</h1>
+      <h2>ELECTRIC PERFORMANCE</h2>
+      <p class="hero-desc">High-performance electric bikes engineered for riders who want power, control and genuine RFN quality.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="#bike-sales">BROWSE BIKES →</a>
+        <a class="btn-outline" href="/cart.html">VIEW CART</a>
+      </div>
+      <div class="hero-slashes">/////</div>
+    </div>
+    <div class="hero-bike-wrap">
+      <div class="hero-bike-glow"></div>
+      <img class="hero-bike" src="/assets/rally.png" alt="RFN electric bike">
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+<div class="stats-inner">
+<div class="stat"><div class="stat-num">12.5KW</div><div class="stat-label">Peak Motor Power</div></div>
+<div class="stat"><div class="stat-num">74V</div><div class="stat-label">Battery System</div></div>
+<div class="stat"><div class="stat-num">150+</div><div class="stat-label">OEM Parts</div></div>
+<div class="stat"><div class="stat-num">43AH</div><div class="stat-label">Max Battery Capacity</div></div>
+</div>
+</div>
+<section class="section" id="bike-sales">
+<div class="container">
+<div class="section-eyebrow">RFN Models</div>
+<h2 class="section-title">RFN BIKES</h2>
+<p class="section-desc">Choose your riding category, then select a model and color. Dealer pricing is used automatically when you add a bike to cart.</p>
+
+<div class="bike-categories"><section aria-labelledby="cat-motocross" class="category-block"><div class="category-header"><div><span class="category-kicker">RFN CATEGORY 01</span><h3 class="category-title" id="cat-motocross"><span class="category-icon">🏁</span>MOTOCROSS</h3><p class="category-desc">Performance electric dirt bikes built for track, jumps and aggressive riding.</p></div><div class="category-count"><b>4</b> MODELS</div></div><div class="category-grid"><div class="bike-card sale-bike" data-dealer-price="1999" data-name="WARRIOR SX-E5" data-retail-price="2899">
+<span class="preorder-tag">PRE ORDER</span>
+<img alt="WARRIOR SX-E5" class="bike-thumb sale-img" src="https://static.wixstatic.com/media/a5b4c9_93d456ff43d94741827058194aa9999f~mv2.png/v1/fill/w_1905,h_892,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_93d456ff43d94741827058194aa9999f~mv2.png"/>
+<div class="bike-card-name">WARRIOR SX-E5</div>
+<p class="bike-card-sub">Pre-order electric dirt bike. Dealer price set for orders.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="assets/rfn5.black.jpeg" style="background:#111"></button>
+<button class="color-btn" data-color="Red/Blue" data-img="https://static.wixstatic.com/media/a5b4c9_93d456ff43d94741827058194aa9999f~mv2.png/v1/fill/w_1905,h_892,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_93d456ff43d94741827058194aa9999f~mv2.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#1d4ed8 50%,#1d4ed8 100%)"></button>
+</div>
+<div class="selected-color">Selected: <span></span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$2899</b></div><div class="price-card dealer"><span>Dealer</span><b>$1999</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+<a class="btn-outline parts-btn" href="/warrior-sx-e5-parts">Go To Parts Catalog →</a>
+</div><div class="bike-card sale-bike" data-dealer-price="2599" data-name="WARRIOR SX-E8" data-retail-price="3599">
+<img alt="WARRIOR SX-E8" class="bike-thumb sale-img" src="https://static.wixstatic.com/media/a5b4c9_e75860ffe2b549038d086ed45758db69~mv2.png/v1/fill/w_1905,h_861,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_e75860ffe2b549038d086ed45758db69~mv2.png"/>
+<div class="bike-card-name">WARRIOR SX-E8</div>
+<p class="bike-card-sub">Electric dirt bike with updated dealer and retail pricing.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="assets/e8,black.png" style="background:#111"></button>
+<button class="color-btn" data-color="Red/Blue" data-img="https://static.wixstatic.com/media/a5b4c9_e75860ffe2b549038d086ed45758db69~mv2.png/v1/fill/w_1905,h_861,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_e75860ffe2b549038d086ed45758db69~mv2.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#1d4ed8 50%,#1d4ed8 100%)"></button>
+</div>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$3599</b></div><div class="price-card dealer"><span>Dealer</span><b>$2599</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+<a class="btn-outline parts-btn" href="/warrior-sx-e8-parts">Go To Parts Catalog →</a>
+</div><div class="bike-card sale-bike" data-dealer-price="4199" data-name="WARRIOR SX-E15" data-retail-price="5499">
+<img alt="WARRIOR SX-E15" class="bike-thumb sale-img" src="https://static.wixstatic.com/media/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png/v1/fill/w_1905,h_823,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png"/>
+<div class="bike-card-name">WARRIOR SX-E15</div>
+<p class="bike-card-sub">Electric dirt bike — E15 parts catalog.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="https://static.wixstatic.com/media/a5b4c9_f81ffc0d6b4240d1922970a55a7b45a9~mv2.png/v1/fill/w_953,h_598,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_f81ffc0d6b4240d1922970a55a7b45a9~mv2.png" style="background:#111"></button>
+<button class="color-btn" data-color="Red/Blue" data-img="https://static.wixstatic.com/media/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png/v1/fill/w_1905,h_823,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#1d4ed8 50%,#1d4ed8 100%)"></button>
+</div>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$5499</b></div><div class="price-card dealer"><span>Dealer</span><b>$4199</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+<a class="btn-outline parts-btn" href="/ares-2026-parts">Go To Parts Catalog →</a>
+</div><div class="bike-card sale-bike" data-dealer-price="4299" data-name="WARRIOR SX-E15 PLUS" data-retail-price="5649">
+<img alt="WARRIOR SX-E15+" class="bike-thumb sale-img" src="https://static.wixstatic.com/media/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png/v1/fill/w_1905,h_823,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png"/>
+<div class="bike-card-name">WARRIOR SX-E15+</div>
+<p class="bike-card-sub">E15 Plus bike — uses the same parts catalog page as E15.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="https://static.wixstatic.com/media/a5b4c9_f81ffc0d6b4240d1922970a55a7b45a9~mv2.png/v1/fill/w_953,h_598,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_f81ffc0d6b4240d1922970a55a7b45a9~mv2.png" style="background:#111"></button>
+<button class="color-btn" data-color="Red/Blue" data-img="https://static.wixstatic.com/media/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png/v1/fill/w_1905,h_823,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/a5b4c9_e5345896fca7412aa7786481cee90d6e~mv2.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#1d4ed8 50%,#1d4ed8 100%)"></button>
+</div>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$5649</b></div><div class="price-card dealer"><span>Dealer</span><b>$4299</b></div></div>
+<span class="outofstock-tag">OUT OF STOCK</span>
+<a class="btn-outline parts-btn" href="/ares-2026-parts">Go To Parts Catalog →</a>
+</div></div></section><section aria-labelledby="cat-light-trail" class="category-block"><div class="category-header"><div><span class="category-kicker">RFN CATEGORY 02</span><h3 class="category-title" id="cat-light-trail"><span class="category-icon">▲</span>LIGHT TRAIL</h3><p class="category-desc">Full-size RFN trail platforms for versatile off-road riding and longer adventures.</p></div><div class="category-count"><b>2</b> MODELS</div></div><div class="category-grid two-up"><div class="bike-card sale-bike" data-dealer-price="3399" data-name="RFN RALLY" data-retail-price="4499">
+<img alt="RFN RALLY" class="bike-thumb sale-img" src="assets\1.png"/>
+<div class="bike-card-name">RFN RALLY</div>
+<p class="bike-card-sub">Rally model with updated dealer and retail pricing.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Red / Black" data-img="assets\rally.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#111 50%,#111 100%)" title="Red / Black"></button>
+<button class="color-btn" data-color="White / Black" data-img="assets/1.png" style="background:linear-gradient(135deg,#fff 0%,#fff 50%,#111 50%,#111 100%)" title="White / Black"></button>
+</div>
+<div class="selected-color">Selected: <span>Red / Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$4499</b></div><div class="price-card dealer"><span>Dealer</span><b>$3399</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+<a class="btn-outline parts-btn" href="/rally-parts">Go To Parts Catalog →</a>
+</div><div class="bike-card sale-bike" data-dealer-price="3550" data-name="RFN ENDURANCE RALLY PRO" data-retail-price="4899" data-slug="ares-endurance">
+<img alt="RFN ENDURANCE RALLY PRO" class="bike-thumb sale-img" src="assets/endurance.png"/>
+<div class="bike-card-name">RFN ENDURANCE RALLY PRO</div>
+<p class="bike-card-sub">Endurance Rally Pro model — uses the same Rally parts catalog.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Red" data-img="assets/endurance.png" style="background:#d81e25" title="Red"></button>
+<button class="color-btn" data-color="Black" data-img="assets/1.png" style="background:#111" title="Black"></button>
+</div>
+<div class="selected-color">Selected: <span>Red</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$4499</b></div><div class="price-card dealer"><span>Dealer</span><b>$3550</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+<a class="btn-outline parts-btn" href="/endurance-rally-pro-parts">Go To Parts Catalog →</a>
+</div></div></section><section aria-labelledby="cat-kids-bikes" class="category-block"><div class="category-header"><div><span class="category-kicker">RFN CATEGORY 03</span><h3 class="category-title" id="cat-kids-bikes"><span class="category-icon">★</span>KIDS BIKES</h3><p class="category-desc">Smaller RFN electric bikes designed for younger riders and entry-level fun.</p></div><div class="category-count"><b>4</b> MODELS</div></div><div class="category-grid"><div class="bike-card sale-bike" data-dealer-price="875" data-name="RFN E2" data-retail-price="1499">
+<img alt="RFN E2" class="bike-thumb sale-img" src="assets/sx-e2_0005_gray.png"/>
+<div class="bike-card-name">WARRIOR - E2</div>
+<p class="bike-card-sub">RFN E2 bike — no parts catalog available.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="assets/sx-e2_0026_gray.png" style="background:#111"></button>
+<button class="color-btn active" data-color="Red" data-img="assets/sx-e2_0005_gray.png" style="background:#d81818"></button>
+<button class="color-btn active" data-color="Green" data-img="assets/sx-e2_0012_gray.png" style="background:#07e91a"></button>
+<button class="color-btn active" data-color="Orange" data-img="assets/sx-e2_0019_gray.png" style="background:#f8a304"></button>
+</div>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$1499</b></div><div class="price-card dealer"><span>Dealer</span><b>$875</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+</div><div class="bike-card sale-bike" data-dealer-price="365" data-name="WARRIOR SX-E350" data-retail-price="699">
+<img alt="WARRIOR SX-E350" class="bike-thumb sale-img" src="assets\sx-e500.png"/>
+<div class="bike-card-name">WARRIOR SX-E350</div>
+<p class="bike-card-sub">E350 kids electric dirt bike — five colors.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="assets\350black_gray.png" style="background:#111"></button>
+<button class="color-btn" data-color="Red/Blue" data-img="assets\sx-e500.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#1d4ed8 50%,#1d4ed8 100%)"></button>
+<button class="color-btn" data-color="Green" data-img="assets\350green_gray.png" style="background:#16a34a"></button>
+<button class="color-btn" data-color="orange" data-img="assets\350orange_gray.png" style="background:orange"></button>
+<button class="color-btn" data-color="Pink" data-img="assets\350pink_gray.png" style="background:#ff77b7"></button>
+</div>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$699</b></div><div class="price-card dealer"><span>Dealer</span><b>$365</b></div></div>
+<button class="btn-primary add-bike-btn">Add Bike To Cart</button>
+<a class="btn-outline parts-btn" href="/warrior-sx-e350-parts">Go To Parts Catalog →</a>
+</div><div class="bike-card sale-bike out-of-stock-bike" data-dealer-price="450" data-name="WARRIOR SX-E500" data-retail-price="799">
+<span class="outofstock-tag">OUT OF STOCK</span>
+<img alt="WARRIOR SX-E500" class="bike-thumb sale-img" src="assets\e500.png"/>
+<div class="bike-card-name">WARRIOR SX-E500</div>
+<p class="bike-card-sub">E500 kids electric dirt bike — five colors.</p>
+<div class="color-options">
+<button class="color-btn active" data-color="Black" data-img="assets\500black_gray.png" style="background:#111"></button>
+<button class="color-btn" data-color="Red/Blue" data-img="assets\e500.png" style="background:linear-gradient(135deg,#d81e25 0%,#d81e25 50%,#1d4ed8 50%,#1d4ed8 100%)"></button>
+<button class="color-btn" data-color="Green" data-img="assets/e500.png" style="background:#16a34a"></button>
+<button class="color-btn" data-color="orange" data-img="assets\500orange_gray.png" style="background:orange"></button>
+<button class="color-btn" data-color="Pink" data-img="assets\500pink_gray.png" style="background:#ff77b7"></button>
+</div>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$799</b></div><div class="price-card dealer"><span>Dealer</span><b>$450</b></div></div>
+<button class="btn-primary out-stock-btn" disabled="" type="button">Out Of Stock</button>
+<a class="btn-outline parts-btn" href="/warrior-sx-700-parts">Go To Parts Catalog →</a>
+</div><div class="bike-card sale-bike out-of-stock-bike" data-dealer-price="0" data-name="RFN EVO-20" data-retail-price="0">
+<span class="outofstock-tag">OUT OF STOCK</span>
+<img alt="RFN EVO-20" class="bike-thumb sale-img" src="assets/evo20.png"/>
+<div class="bike-card-name">RFN EVO-20</div>
+<p class="bike-card-sub">EVO balance bike — currently out of stock. Parts catalog still available.</p>
+<div class="selected-color">Selected: <span>Black</span><span class="selected-stock-state"></span></div>
+<div class="bike-price-box"><div class="price-card"><span>Retail</span><b>$0</b></div><div class="price-card dealer"><span>Dealer</span><b>$0</b></div></div>
+<button class="btn-primary out-stock-btn" disabled="" type="button">Out Of Stock</button>
+<a class="btn-outline parts-btn" href="/evo-20-parts">Go To Parts Catalog →</a>
+</div></div></section></div></div>
+</section>
+<section class="section">
+<div class="container">
+<div class="section-eyebrow">Why RFN USA</div>
+<h2 class="section-title">Genuine. Fast. Reliable.</h2>
+<div class="features-grid">
+<div class="feature-item"><span class="feature-icon">⚡</span><div class="feature-title">OEM Guaranteed</div><p class="feature-desc">Every part is sourced directly from RFN. Guaranteed fitment for your RFN bike.</p></div>
+<div class="feature-item"><span class="feature-icon">📦</span><div class="feature-title">Fast Shipping</div><p class="feature-desc">Ships from the Houston, Texas warehouse nationwide.</p></div>
+<div class="feature-item"><span class="feature-icon">🔧</span><div class="feature-title">Expert Support</div><p class="feature-desc">Need help identifying a part or bike? Contact our team for guidance.</p></div>
+</div>
+</div>
+</section>
+<footer class="site-footer">
+<div class="footer-inner">
+<div><img alt="RFN USA" class="footer-logo" src="/assets/rfn-logo.png"/><p class="footer-tagline">RFN USA — electric bikes, genuine OEM parts and accessories shipped nationwide.</p></div>
+<div><div class="footer-label">Catalog</div><a class="footer-link" href="#bike-sales">Bikes</a><a class="footer-link" href="/cart.html">Shopping Cart</a></div>
+<div><div class="footer-label">Shop</div><a class="footer-link" href="https://www.rfn-usa.com/shop" target="_blank">RFN USA Store</a><a class="footer-link" href="https://www.rfn-usa.com/bikes" target="_blank">RFN USA Bikes</a></div>
+<div><div class="footer-label">Contact</div><a class="footer-link" href="mailto:sales@rfn-usa.com">sales@rfn-usa.com</a><a class="footer-link" href="https://www.instagram.com/rfnbikesusa/" target="_blank">Instagram</a></div>
+</div>
+<div class="footer-bottom"><span>© 2026 RFN USA</span><span>9300 Harwin Dr. Suite C, Houston, TX 77036</span></div>
+</footer>
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+  function fmt(n){ return '$' + Number(n || 0).toLocaleString('en-US', {maximumFractionDigits:0}); }
+  function getCart(){ return JSON.parse(localStorage.getItem('rfnCart') || '[]'); }
+  function saveCart(cart){ localStorage.setItem('rfnCart', JSON.stringify(cart)); }
+  function updateCartCount(){
+    const total = getCart().reduce((s,i) => s + (i.qty || 1), 0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = total);
+  }
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2400);
+  }
+
+  document.querySelectorAll('.sale-bike').forEach(card => {
+    const retail = Number(card.dataset.retailPrice || 0);
+    const dealer = Number(card.dataset.dealerPrice || 0);
+    const priceCards = card.querySelectorAll('.price-card b');
+    if(priceCards[0]) priceCards[0].textContent = fmt(retail);
+    if(priceCards[1]) priceCards[1].textContent = fmt(dealer);
+
+    let selectedColor = card.querySelector('.color-btn.active')?.dataset.color || 'Black';
+    const selectedText = card.querySelector('.selected-color span');
+
+    card.querySelectorAll('.color-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        card.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectedColor = btn.dataset.color;
+        if(selectedText) selectedText.textContent = selectedColor;
+        const img = card.querySelector('.sale-img');
+        if(img && btn.dataset.img) img.src = btn.dataset.img;
+      });
+    });
+
+    card.querySelector('.add-bike-btn')?.addEventListener('click', () => {
+      const cart = getCart();
+      cart.push({
+        category: 'bike',
+        type: 'bike',
+        product_id: card.dataset.dbBikeId || '',
+        bike: card.dataset.name,
+        name: card.dataset.name,
+        code: card.dataset.name.replace(/\s+/g, '-').toUpperCase(),
+        color: selectedColor,
+        available_stock: Number(card.querySelector('.color-btn.active')?.dataset.stockQuantity || card.dataset.dbQuantity || 0),
+        retailPrice: Number(card.dataset.retailPrice || 0),
+        dealerPrice: Number(card.dataset.dealerPrice || 0),
+        price: Number(card.dataset.dealerPrice || 0),
+        qty: 1
+      });
+      saveCart(cart);
+      updateCartCount();
+      showToast(card.dataset.name + ' added to cart — ' + selectedColor);
+    });
+  });
+
+  updateCartCount();
+})();
+
+function logout(){
+  window.rfnLogout();
+}
+</script>
+
+
+
+<script id="rfn-live-bike-database-sync">
+(function(){
+  const ALIASES = {
+    'WARRIOR SX-E5': ['warrior-sx-e5','rfn-warrior-sx-e5'],
+    'WARRIOR SX-E8': ['warrior-sx-e8','rfn-warrior-sx-e8'],
+    'WARRIOR SX-E15': ['warrior-sx-e15','rfn-warrior-sx-e15'],
+    'WARRIOR SX-E15 PLUS': ['warrior-sx-e15-plus','rfn-warrior-sx-e15-plus'],
+    'WARRIOR SX-E350': ['warrior-sx-e350','rfn-warrior-sx-e350'],
+    'WARRIOR SX-E500': ['warrior-sx-e500','rfn-warrior-sx-e500'],
+    'RFN RALLY': ['rfn-ares-rally-pro','ares-rally-pro'],
+    'RFN ENDURANCE RALLY PRO': ['ares-endurance','rfn-ares-endurance'],
+    'RFN EVO-20': ['evo-20','rfn-evo-20']
+  };
+
+  function money(value){
+    const n = Number(value || 0);
+    return '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0});
+  }
+  function norm(value){ return String(value || '').trim().toLowerCase().replace(/\+/g,'-plus').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
+  function keyColor(value){ return String(value || '').trim().toLowerCase().replace(/\s+/g,' '); }
+
+  function colorInventoryEntries(bike){
+    const raw = bike && bike.color_status;
+    if (!raw || typeof raw !== 'object') return [];
+    return Array.isArray(raw)
+      ? raw.map(item => ({name:item?.name||item?.color||'', status:item?.status, quantity:item?.quantity}))
+      : Object.entries(raw).map(([name,data]) => ({
+          name,
+          status:data && typeof data==='object' ? data.status : data,
+          quantity:data && typeof data==='object' ? data.quantity : null
+        }));
+  }
+
+  function effectiveBikeStatus(bike){
+    const saved = String(bike.status || '').toLowerCase();
+    if (saved === 'hidden' || saved === 'pre_order') return saved;
+    const colors = colorInventoryEntries(bike);
+    if (!colors.length) return saved;
+    const anyAvailable = colors.some(color =>
+      color.quantity != null
+        ? Number(color.quantity) > 0
+        : String(color.status || '').toLowerCase() !== 'out_of_stock'
+    );
+    return anyAvailable ? 'in_stock' : 'out_of_stock';
+  }
+
+  function chooseBike(rows, cardName, exactSlug){
+    if (exactSlug) {
+      const exact = rows.find(row => norm(row.slug) === norm(exactSlug));
+      if (exact) return exact;
+    }
+    const aliases = ALIASES[cardName] || [];
+    let candidates = rows.filter(row => aliases.includes(norm(row.slug)));
+    if (!candidates.length) {
+      const nk = norm(cardName).replace(/^rfn-/,'');
+      candidates = rows.filter(row => {
+        const rn = norm(row.name).replace(/^rfn-/,'');
+        const rs = norm(row.slug).replace(/^rfn-/,'');
+        return rn === nk || rs === nk;
+      });
+    }
+    if (!candidates.length) return null;
+
+    // Prefer the record most recently saved in Admin. This prevents an older
+    // duplicate E8 row from overriding the stock value that was just edited.
+    candidates.sort((a,b) => {
+      const updated = r => Date.parse(r.updated_at || r.created_at || 0) || 0;
+      const dateDifference = updated(b) - updated(a);
+      if (dateDifference) return dateDifference;
+      const score = r =>
+        (Number(r.dealer_price || 0) > 0 ? 8 : 0) +
+        (Number(r.retail_price || 0) > 0 ? 8 : 0) +
+        (Number(r.quantity || r.stock_quantity || 0) > 0 ? 4 : 0) +
+        (Object.keys(r.color_status || {}).length ? 3 : 0) +
+        (r.status === 'pre_order' || r.status === 'out_of_stock' || r.status === 'hidden' ? 2 : 0);
+      return score(b) - score(a);
+    });
+    return candidates[0];
+  }
+
+  function clearDynamicStock(card){
+    card.classList.remove('out-of-stock-bike');
+    card.querySelectorAll('.rfn-db-stock-tag').forEach(el => el.remove());
+    const add = card.querySelector('.add-bike-btn, .out-stock-btn');
+    if (add) {
+      add.disabled = false;
+      add.classList.remove('out-stock-btn');
+      add.classList.add('add-bike-btn');
+      add.textContent = 'Add Bike To Cart';
+    }
+    card.querySelectorAll('.color-btn').forEach(btn => {
+      btn.classList.remove('out-stock-color');
+      delete btn.dataset.outOfStock;
+      btn.disabled = false;
+      btn.title = btn.dataset.color || '';
+    });
+    card.querySelectorAll('.black-stock-label').forEach(el => el.style.display = 'none');
+  }
+
+  function setWholeBikeStatus(card, bike){
+    card.querySelectorAll('.preorder-tag, .outofstock-tag').forEach(tag => {
+      if (!tag.classList.contains('rfn-db-stock-tag')) tag.style.display = 'none';
+    });
+    const status = effectiveBikeStatus(bike);
+    // Hidden status is the single source of truth for visibility.
+    // Older featured/active flags must not hide a valid bike such as Endurance.
+    if (status === 'hidden') {
+      card.style.display = 'none';
+      return;
+    }
+    card.style.display = '';
+
+    if (status === 'pre_order') {
+      const tag = document.createElement('span');
+      tag.className = 'preorder-tag rfn-db-stock-tag';
+      tag.textContent = 'PRE ORDER';
+      card.prepend(tag);
+    }
+
+    if (status === 'out_of_stock') {
+      card.classList.add('out-of-stock-bike');
+      const tag = document.createElement('span');
+      tag.className = 'outofstock-tag rfn-db-stock-tag';
+      tag.textContent = 'OUT OF STOCK';
+      card.prepend(tag);
+      const add = card.querySelector('.add-bike-btn, button.out-stock-btn');
+      if (add) {
+        add.disabled = true;
+        add.classList.add('out-stock-btn');
+        add.classList.remove('add-bike-btn');
+        add.textContent = 'Out Of Stock';
+      }
+    }
+  }
+
+  function applyColorStatus(card, bike){
+    const raw = bike.color_status;
+    const statusMap = raw && typeof raw === 'object' ? raw : {};
+    const normalized = new Map(
+      Object.entries(statusMap).map(([k,v]) => [keyColor(k), v])
+    );
+
+    const buttons = [...card.querySelectorAll('.color-btn')];
+    buttons.forEach(btn => {
+      const data = normalized.get(keyColor(btn.dataset.color));
+      const state = data && typeof data === 'object' ? String(data.status || '') : String(data || '');
+      const colorQty = data && typeof data === 'object' && data.quantity != null ? Number(data.quantity) : null;
+      const out = colorQty !== null ? colorQty <= 0 : (state === 'out_of_stock' || state === 'out of stock' || state === 'false' || state === '0');
+      btn.dataset.stockQuantity = colorQty === null ? '' : String(colorQty);
+      btn.dataset.outOfStock = out ? 'true' : 'false';
+      btn.classList.toggle('out-stock-color', out);
+      btn.title = (btn.dataset.color || '') + (out ? ' — Out Of Stock' : ' — In Stock');
+    });
+
+    const add = card.querySelector('button.add-bike-btn, button.out-stock-btn');
+    const selectedState = card.querySelector('.selected-stock-state');
+
+    const updateSelected = () => {
+      const active = card.querySelector('.color-btn.active');
+      if (!active) return;
+
+      // A general bike status must not block an available color. The Home page
+      // uses the selected color quantity whenever per-color inventory exists.
+      const wholeOos = effectiveBikeStatus(bike) === 'out_of_stock';
+      const colorOos = active.dataset.outOfStock === 'true';
+
+      if (selectedState) {
+        const qty = active.dataset.stockQuantity;
+        selectedState.textContent = colorOos ? ' — OUT OF STOCK' : (qty !== '' ? ` — ${qty} IN STOCK` : ' — IN STOCK');
+        selectedState.classList.toggle('is-out', colorOos);
+      }
+
+      if (!add || wholeOos) return;
+      add.disabled = colorOos;
+      add.classList.toggle('out-stock-btn', colorOos);
+      add.classList.toggle('add-bike-btn', !colorOos);
+      add.textContent = colorOos ? ((active.dataset.color || 'Color') + ' — Out Of Stock') : 'Add Bike To Cart';
+    };
+
+    buttons.forEach(btn => btn.addEventListener('click', () => setTimeout(updateSelected, 0)));
+    updateSelected();
+  }
+
+  function applyBike(card, bike){
+    clearDynamicStock(card);
+    const dealer = Number(bike.dealer_price || 0);
+    const retail = Number(bike.retail_price || 0);
+
+    // Database values are authoritative when they are present. A 0 price is also a valid saved value.
+    if (Number.isFinite(dealer)) card.dataset.dealerPrice = String(dealer);
+    if (Number.isFinite(retail)) card.dataset.retailPrice = String(retail);
+    const prices = card.querySelectorAll('.price-card b');
+    if (prices[0]) prices[0].textContent = money(retail);
+    if (prices[1]) prices[1].textContent = money(dealer);
+
+    card.dataset.dbBikeId = bike.id || '';
+    card.dataset.dbSlug = bike.slug || '';
+    card.dataset.dbQuantity = String(Number(bike.quantity ?? bike.stock_quantity ?? 0));
+    card.dataset.dbCategory = String(bike.category || '');
+
+    setWholeBikeStatus(card, bike);
+    applyColorStatus(card, bike);
+  }
+
+  async function sync(){
+    try {
+      const res = await fetch('/.netlify/functions/store-products?product_type=bike', {cache:'no-store'});
+      if (!res.ok) throw new Error('Bike API HTTP ' + res.status);
+      const data = await res.json();
+      const rows = Array.isArray(data.bikes) ? data.bikes : (Array.isArray(data.products) ? data.products : []);
+      document.querySelectorAll('.sale-bike').forEach(card => {
+        const cardName = String(card.dataset.name || '').trim();
+        const bike = chooseBike(rows, cardName, card.dataset.slug || '');
+        if (bike) applyBike(card, bike);
+      });
+      const targets={
+        'motocross':document.querySelector('#cat-motocross')?.closest('.category-block')?.querySelector('.category-grid'),
+        'light-trail':document.querySelector('#cat-light-trail')?.closest('.category-block')?.querySelector('.category-grid'),
+        'kids-bikes':document.querySelector('#cat-kids-bikes')?.closest('.category-block')?.querySelector('.category-grid')
+      };
+      document.querySelectorAll('.sale-bike[data-db-category]').forEach(card=>{
+        const target=targets[card.dataset.dbCategory];
+        if(target) target.appendChild(card);
+      });
+      document.querySelectorAll('.category-block').forEach(section=>{
+        const count=section.querySelectorAll('.category-grid .sale-bike').length;
+        const badge=section.querySelector('.category-count b'); if(badge) badge.textContent=String(count);
+      });
+      document.dispatchEvent(new CustomEvent('rfn:bikes-synced'));
+    } catch (err) {
+      console.error('RFN bike database sync failed:', err);
+      // Keep the original page values if the database is temporarily unavailable.
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sync);
+  else sync();
+})();
+</script>
+
+</body>
+</html>

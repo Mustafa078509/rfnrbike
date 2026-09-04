@@ -1,0 +1,32 @@
+RFN PARTS + SUPABASE CONNECTION
+===============================
+
+The following catalog pages now load price and stock from the Supabase products table:
+- ares-2026-parts.html
+- ares-parts.html
+- rally-parts.html
+- warrior-sx-e5-parts.html
+- warrior-sx-e8-parts.html
+- warrior-sx-700-parts.html
+- evo-20-parts.html
+
+How it works
+------------
+1. Each page keeps its original diagrams and part layout.
+2. /parts-database.js calls /api/store-products?product_type=part.
+3. Parts are matched by part_number.
+4. Dealer price, retail price, product name and stock_quantity come from Supabase.
+5. stock_quantity = 0 disables Add to Cart and shows Out of Stock.
+6. Low stock uses low_stock_threshold.
+7. The Supabase product UUID is saved with the cart item for order/inventory processing.
+
+Required Netlify environment variables
+--------------------------------------
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
+ADMIN_EMAILS
+
+Important
+---------
+All part records must use product_type = 'part' and their part_number must match the part code shown in the HTML catalog.
+Do not place SUPABASE_SERVICE_ROLE_KEY in admin/config.js or any browser file.

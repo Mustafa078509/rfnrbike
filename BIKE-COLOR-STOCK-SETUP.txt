@@ -1,0 +1,15 @@
+RFN BIKE COLOR AVAILABILITY
+
+1) Deploy this ZIP to Netlify.
+2) In Supabase Dashboard > SQL Editor, run:
+   supabase/add-bike-color-status.sql
+3) Open Admin > Bikes.
+
+What changed:
+- Add Bike form in Admin > Bikes.
+- Each bike color has its own In Stock / Out of Stock status.
+- If every color is Out of Stock, the bike saves as Out of Stock (unless Pre-Order or Hidden).
+- If any color is In Stock, the bike saves as In Stock (unless Pre-Order or Hidden).
+- Bike Dealer Price, Retail Price and Quantity remain editable.
+- Parts system was not changed.
+- index.html was not changed.

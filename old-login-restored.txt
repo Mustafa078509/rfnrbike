@@ -1,0 +1,9 @@
+RFN ADMIN LOGIN RESTORED
+
+Admin URLs:
+/adminv2/login.html
+/adminv2/dashboard.html
+
+This version uses the original Supabase login/session flow.
+The browser-side admin_users role check was removed from login and dashboard.
+A valid Supabase Authentication user is still required.

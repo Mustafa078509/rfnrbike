@@ -1,0 +1,13 @@
+RFN DATABASE CONNECTION FIX
+
+1. Open Supabase Dashboard > SQL Editor.
+2. Run: supabase/FIX-CATALOG-DATABASE-CONNECTION.sql
+3. In Netlify > Site configuration > Environment variables, add:
+   SUPABASE_URL=https://buprdivnomupwvazrlhl.supabase.co
+   SUPABASE_ANON_KEY=your Supabase publishable key
+   SUPABASE_SERVICE_ROLE_KEY=your Supabase service_role key (needed for admin writes)
+4. Redeploy the site with Clear cache and deploy site.
+5. Test this URL:
+   https://YOUR-SITE.netlify.app/api/store-products?product_type=part
+
+It should return JSON containing: "connected": true

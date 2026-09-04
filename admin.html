@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RFN USA — Orders Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#f3f4f6;--card:#fff;--text:#17171b;--muted:#6b7280;--border:#dedfe4;--red:#d81e25;--dark:#111318;--blue:#1d4ed8;--green:#15803d}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}
+    header{background:var(--dark);color:white;padding:18px 4vw;display:flex;align-items:center;justify-content:space-between;gap:20px;position:sticky;top:0;z-index:5}
+    header img{height:42px;max-width:150px;object-fit:contain} nav{display:flex;gap:18px;align-items:center} nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+    main{max-width:1500px;margin:auto;padding:38px 4vw 80px}.top{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+    h1{font-family:'Bebas Neue',sans-serif;font-size:48px;letter-spacing:1px;margin:0}.sub{color:var(--muted);margin-top:4px}.actions{display:flex;gap:10px;flex-wrap:wrap}
+    button,select,input{font:inherit}.btn{border:0;border-radius:8px;padding:11px 16px;font-weight:700;cursor:pointer}.btn-dark{background:var(--dark);color:#fff}.btn-red{background:var(--red);color:#fff}.btn-light{background:#fff;border:1px solid var(--border)}
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px}.stat-label{font-size:12px;text-transform:uppercase;color:var(--muted);font-weight:700}.stat-value{font-size:29px;font-weight:800;margin-top:5px}
+    .toolbar{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;display:flex;gap:10px;margin-bottom:16px}.toolbar input,.toolbar select{border:1px solid var(--border);border-radius:8px;padding:10px 12px;background:white}.toolbar input{flex:1;min-width:220px}
+    .table-wrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:auto}table{width:100%;border-collapse:collapse;min-width:1150px}th,td{text-align:left;padding:14px;border-bottom:1px solid var(--border);vertical-align:top}th{font-size:12px;text-transform:uppercase;color:var(--muted);background:#fafafa;position:sticky;top:0}.order-id{font-weight:800;font-size:12px}.customer{font-weight:700}.small{font-size:12px;color:var(--muted);line-height:1.55}.items{max-width:360px;font-size:13px;line-height:1.5}.price{font-weight:800;white-space:nowrap}.status{border:1px solid var(--border);border-radius:7px;padding:7px;background:#fff;font-weight:700}.delete{border:0;background:transparent;color:var(--red);font-weight:700;cursor:pointer}
+    .empty,.loading{padding:60px;text-align:center;color:var(--muted)}.error{background:#fee2e2;color:#991b1b;padding:14px;border-radius:10px;margin-bottom:15px;display:none}
+    @media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.top{align-items:start;flex-direction:column}h1{font-size:40px}header{align-items:flex-start}.toolbar{flex-direction:column}}
+  </style>
+</head>
+<body>
+<header>
+  <a href="index.html"><img src="assets/rfn-logo.png" alt="RFN USA"></a>
+  <nav><a href="index.html">Bikes & Parts</a><a href="cart.html">Cart</a><a href="admin.html">Orders</a></nav>
+</header>
+<main>
+  <div class="top"><div><h1>Orders Database</h1><div class="sub">Orders saved from the RFN dealer website.</div></div><div class="actions"><button class="btn btn-light" id="exportBtn">Export CSV</button><button class="btn btn-dark" id="refreshBtn">Refresh</button></div></div>
+  <div class="stats"><div class="stat"><div class="stat-label">All Orders</div><div class="stat-value" id="allCount">0</div></div><div class="stat"><div class="stat-label">New</div><div class="stat-value" id="newCount">0</div></div><div class="stat"><div class="stat-label">Processing</div><div class="stat-value" id="processingCount">0</div></div><div class="stat"><div class="stat-label">Order Value</div><div class="stat-value" id="totalValue">$0</div></div></div>
+  <div class="toolbar"><input id="search" placeholder="Search order, customer, email, bike or part number"><select id="statusFilter"><option value="">All Statuses</option><option>New</option><option>Processing</option><option>Completed</option><option>Cancelled</option></select></div>
+  <div class="error" id="errorBox"></div>
+  <div class="table-wrap"><div class="loading" id="loading">Loading orders…</div><table id="ordersTable" hidden><thead><tr><th>Order</th><th>Customer</th><th>Shipping</th><th>Items</th><th>Total</th><th>Status</th><th></th></tr></thead><tbody id="ordersBody"></tbody></table><div class="empty" id="empty" hidden>No orders found.</div></div>
+</main>
+<script>
+let orders=[];
+const money=n=>'$'+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function loadOrders(){
+  document.getElementById('loading').hidden=false;document.getElementById('ordersTable').hidden=true;document.getElementById('empty').hidden=true;document.getElementById('errorBox').style.display='none';
+  try{const r=await fetch('/api/orders',{cache:'no-store'});const d=await r.json();if(!r.ok)throw new Error(d.error||'Could not load orders');orders=d.orders||[];updateStats();render();}
+  catch(e){const box=document.getElementById('errorBox');box.textContent='Database error: '+e.message;box.style.display='block';document.getElementById('loading').hidden=true;}
+}
+function updateStats(){document.getElementById('allCount').textContent=orders.length;document.getElementById('newCount').textContent=orders.filter(o=>o.status==='New').length;document.getElementById('processingCount').textContent=orders.filter(o=>o.status==='Processing').length;document.getElementById('totalValue').textContent=money(orders.reduce((s,o)=>s+Number(o.total||0),0));}
+function render(){
+  const q=document.getElementById('search').value.toLowerCase();const status=document.getElementById('statusFilter').value;
+  const filtered=orders.filter(o=>{const hay=JSON.stringify(o).toLowerCase();return(!q||hay.includes(q))&&(!status||o.status===status)});
+  const body=document.getElementById('ordersBody');body.innerHTML='';document.getElementById('loading').hidden=true;
+  if(!filtered.length){document.getElementById('ordersTable').hidden=true;document.getElementById('empty').hidden=false;return}
+  document.getElementById('empty').hidden=true;document.getElementById('ordersTable').hidden=false;
+  filtered.forEach(o=>{const c=o.customer||{};const items=(o.items||[]).map(i=>`${esc(i.qty)}× <b>${esc(i.name)}</b><div class="small">${esc(i.bike)} · ${esc(i.code||'No code')}${i.color?' · '+esc(i.color):''}</div>`).join('<br>');const tr=document.createElement('tr');tr.innerHTML=`<td><div class="order-id">${esc(o.id)}</div><div class="small">${new Date(o.createdAt).toLocaleString()}</div></td><td><div class="customer">${esc(c.firstName)} ${esc(c.lastName)}</div><div class="small">${esc(c.email)}<br>${esc(c.phone||'')}</div></td><td><div class="small">${esc(c.address)}<br>${esc(c.city)}, ${esc(c.province)} ${esc(c.postal)}<br>${esc(c.country)}</div></td><td class="items">${items}${o.notes?`<div class="small"><b>Notes:</b> ${esc(o.notes)}</div>`:''}</td><td class="price">${money(o.total)}</td><td><select class="status" data-id="${esc(o.id)}"><option ${o.status==='New'?'selected':''}>New</option><option ${o.status==='Processing'?'selected':''}>Processing</option><option ${o.status==='Completed'?'selected':''}>Completed</option><option ${o.status==='Cancelled'?'selected':''}>Cancelled</option></select></td><td><button class="delete" data-delete="${esc(o.id)}">Delete</button></td>`;body.appendChild(tr)});
+}
+async function updateStatus(id,status){const r=await fetch('/api/orders/'+encodeURIComponent(id),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});if(!r.ok)throw new Error('Could not update order');const o=orders.find(x=>x.id===id);if(o)o.status=status;updateStats();}
+async function deleteOrder(id){if(!confirm('Delete this order permanently?'))return;const r=await fetch('/api/orders/'+encodeURIComponent(id),{method:'DELETE'});if(!r.ok)throw new Error('Could not delete order');orders=orders.filter(o=>o.id!==id);updateStats();render();}
+document.addEventListener('change',e=>{if(e.target.matches('.status'))updateStatus(e.target.dataset.id,e.target.value).catch(err=>alert(err.message));});document.addEventListener('click',e=>{if(e.target.dataset.delete)deleteOrder(e.target.dataset.delete).catch(err=>alert(err.message));});
+document.getElementById('search').addEventListener('input',render);document.getElementById('statusFilter').addEventListener('change',render);document.getElementById('refreshBtn').addEventListener('click',loadOrders);
+document.getElementById('exportBtn').addEventListener('click',()=>{const rows=[['Order ID','Date','Status','Customer','Email','Phone','Address','Items','Total']];orders.forEach(o=>{const c=o.customer||{};rows.push([o.id,o.createdAt,o.status,`${c.firstName||''} ${c.lastName||''}`,c.email,c.phone,`${c.address||''}, ${c.city||''}, ${c.province||''} ${c.postal||''}, ${c.country||''}`,(o.items||[]).map(i=>`${i.qty}x ${i.name} (${i.code||''})`).join(' | '),o.total])});const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='rfn-orders.csv';a.click();URL.revokeObjectURL(a.href)});
+loadOrders();
+</script>
+</body>
+</html>

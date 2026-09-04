@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cart — RFN USA</title>
+<style>html{visibility:hidden}</style><script type="module" src="/auth-guard.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #ffffff;
+    --surface: #f6f6f7;
+    --surface2: #ededf0;
+    --border: #e0e0e4;
+    --accent: #d81e25;
+    --accent2: #a8141a;
+    --accent-blue: #1d4ed8;
+    --accent-blue2: #1e3a8a;
+    --text: #16161a;
+    --muted: #6b6b73;
+    --danger: #c0392b;
+    --success: #27ae60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* ── NAV ── */
+  .nav-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-brand span { color: var(--accent); }
+  .nav-links { display: flex; gap: 18px; align-items: center; }
+  .nav-link {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+  .nav-link:hover { color: var(--accent-blue); }
+  .nav-link.active { color: var(--accent-blue); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    padding: 48px 0 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(40px, 7vw, 72px);
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  /* ── CART TABLE ── */
+  .cart-section { padding: 40px 0; }
+
+  .cart-empty {
+    text-align: center;
+    padding: 80px 20px;
+  }
+  .cart-empty-icon {
+    font-size: 64px;
+    margin-bottom: 24px;
+    opacity: 0.3;
+  }
+  .cart-empty h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 3px;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .cart-empty p { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    padding: 12px 32px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.15s;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 6px;
+  }
+  .btn-primary:hover { background: var(--accent2); }
+
+  .btn-outline {
+    display: inline-block;
+    background: transparent;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 10px 28px;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.15s, border-color 0.15s;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    border-radius: 6px;
+  }
+  .btn-outline:hover { color: var(--text); border-color: var(--muted); }
+
+  /* ── CART ITEMS ── */
+  .cart-items { display: flex; flex-direction: column; gap: 2px; margin-bottom: 32px; }
+
+  .cart-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 20px;
+    transition: border-color 0.15s;
+    border-radius: 8px;
+  }
+  .cart-item:hover { border-color: rgba(216,30,37,0.3); }
+
+  .item-info {}
+  .item-bike {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .item-name { font-size: 14px; color: var(--text); font-weight: 400; margin-bottom: 4px; }
+  .item-code { font-size: 11px; color: var(--muted); font-family: 'Courier New', monospace; letter-spacing: 1px; }
+
+  .item-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .qty-btn {
+    background: var(--surface2);
+    border: none;
+    color: var(--text);
+    width: 32px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .qty-btn:hover { background: var(--accent); color: white; }
+  .qty-value {
+    min-width: 36px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    background: var(--surface);
+    height: 36px;
+    line-height: 36px;
+    padding: 0 4px;
+  }
+
+  .remove-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 18px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+  }
+  .remove-btn:hover { color: var(--danger); border-color: var(--danger); background: rgba(192,57,43,0.08); }
+
+  @media(max-width:600px){
+    .cart-item {
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+    }
+    .item-price { grid-column: 2; grid-row: 1; align-self: start; }
+    .qty-control { grid-column: 1; grid-row: 2; }
+    .remove-btn { grid-column: 2; grid-row: 2; }
+  }
+
+  /* ── SUMMARY ── */
+  .cart-summary {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .summary-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-size: 13px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-row:last-of-type { border-bottom: none; }
+  .summary-row.total {
+    padding-top: 16px;
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .summary-row.total .total-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--accent2);
+  }
+
+  .summary-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  /* ── ORDER FORM ── */
+  .order-form-section {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    display: none;
+  }
+  .order-form-section.visible { display: block; }
+  .form-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .form-subtitle { color: var(--muted); font-size: 13px; margin-bottom: 28px; }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media(max-width:600px){ .form-grid { grid-template-columns: 1fr; } }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  input, textarea, select {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.15s;
+    width: 100%;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+  input::placeholder, textarea::placeholder { color: var(--muted); }
+  textarea { resize: vertical; min-height: 100px; }
+  select option { background: var(--surface); }
+
+  .order-items-preview {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .order-items-preview strong { color: var(--text); display: block; margin-bottom: 8px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; }
+  .preview-item { padding: 4px 0; border-bottom: 1px solid var(--border); }
+  .preview-item:last-child { border-bottom: none; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--success);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+    z-index: 9999;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    margin-top: 60px;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 600px) { .footer-inner { grid-template-columns: 1fr; } }
+  .footer-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .footer-inner p, .footer-inner a {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.8;
+    display: block;
+    text-decoration: none;
+  }
+  .footer-inner a:hover { color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <a class='nav-brand' href='/'><img src="/assets/rfn-logo.png" alt="RFN USA" style="height:26px;width:auto;display:block"></a>
+  <div class="nav-links">
+    <a class='nav-link' href='/'>Home</a>
+    <a class='nav-link' href='/#models'>Parts</a>
+    <a class='nav-link active' href='/cart'>Cart 🛒 <span class="cart-count">0</span></a>
+    <a href="#" class="nav-link" onclick="logout();return false;">Logout</a>
+  </div>
+  <a class="nav-link" href="/my-orders.html">MY ORDERS</a>
+</nav>
+
+<div class="container">
+  <!-- PAGE HEADER -->
+  <div class="page-header">
+    <div class="page-eyebrow">RFN USA · Parts Order</div>
+    <h1 class="page-title">Your Cart</h1>
+  </div>
+
+  <!-- CART SECTION -->
+  <div class="cart-section">
+
+    <!-- EMPTY STATE -->
+    <div class="cart-empty" id="cartEmpty">
+      <div class="cart-empty-icon">🛒</div>
+      <h2>Cart is Empty</h2>
+      <p>Browse the RFN parts catalog and add items to your cart.</p>
+      <a class='btn-primary' href='/#models'>Browse Parts</a>
+    </div>
+
+    <!-- CART CONTENT (shown when items exist) -->
+    <div id="cartContent" style="display:none;">
+      <div class="cart-items" id="cartItems"></div>
+
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:32px;align-items:start;">
+        <div>
+          <a class='btn-outline' href='/#models'>← Continue Shopping</a>
+        </div>
+        <div class="cart-summary">
+          <div class="summary-title">Order Summary</div>
+          <div class="summary-row">
+            <span>Subtotal (<span id="itemCount">0</span> items)</span>
+            <span id="subtotal">$0.00</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span style="color:var(--accent2);">Calculated at checkout</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span class="total-amount" id="totalAmount">$0.00</span>
+          </div>
+          <div class="summary-actions">
+            <button class="btn-primary" id="proceedBtn">Proceed to Order →</button>
+            <button class="btn-outline" id="clearCartBtn">Clear Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER FORM -->
+      <div class="order-form-section" id="orderForm">
+        <div class="form-title">Contact &amp; Shipping</div>
+        <p class="form-subtitle">Fill in your details and we'll get back to you to confirm your order and shipping costs.</p>
+
+        <div class="order-items-preview" id="orderPreview">
+          <strong>Order Items</strong>
+        </div>
+
+        <form id="contactForm" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="firstName">First Name *</label>
+              <input type="text" id="firstName" name="firstName" placeholder="John" required>
+            </div>
+            <div class="form-group">
+              <label for="lastName"> Dealer Name *</label>
+              <input type="text" id="lastName" name="lastName" placeholder="RFN_USA" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group full">
+              <label for="address">Shipping Address *</label>
+              <input type="text" id="address" name="address" placeholder="123 Main St" required>
+            </div>
+            <div class="form-group">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" placeholder="Houston" required>
+            </div>
+            <div class="form-group">
+              <label for="province">State *</label>
+              <input type="text" id="province" name="province" placeholder="Texas" required>
+            </div>
+            <div class="form-group">
+              <label for="postal">ZIP Code *</label>
+              <input type="text" id="postal" name="postal" placeholder="77036" required>
+            </div>
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" name="country">
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label for="notes">Order Notes</label>
+              <textarea id="notes" name="notes" placeholder="Any special instructions or questions about your order..."></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;padding:16px;font-size:13px;border-radius:8px;">
+            Submit Order Request →
+          </button>
+          <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">
+            This submits an order inquiry. A team member will contact you to confirm availability and shipping.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- AUTH TOKEN FOR SECURE ORDER API -->
+<script type="module">
+  import { getAccessToken } from '/identity-client.js';
+  window.rfnGetAccessToken = getAccessToken;
+</script>
+
+<!-- EMAILJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-label">Contact</div>
+      <p>9300 Harwin Dr. Suite C<br>Houston, TX 77036</p>
+      <a href="mailto:sales@rfn-usa.com">sales@rfn-usa.com</a>
+    </div>
+    <div>
+      <div class="footer-label">Shop</div>
+      <a href="https://www.rfn-usa.com/shop" target="_blank">Shop RFN USA →</a>
+      <a href="https://www.rfn-usa.com/bikes" target="_blank">View Bikes →</a>
+    </div>
+    <div>
+      <div class="footer-label">Follow</div>
+      <a href="https://www.facebook.com/profile.php?id=100093047587560" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/rfnbikesusa/" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@RFN-USA" target="_blank">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ================= EMAILJS SETTINGS =================
+  // These are your current IDs. Change only if EmailJS gives you different IDs.
+  const EMAILJS_PUBLIC_KEY = "o_P0PXO_RIFbOq3wD";
+  const EMAILJS_SERVICE_ID = "service_r1gwqac";
+  const EMAILJS_TEMPLATE_ID = "template_ge686sd";
+
+  // Email that receives the order request.
+  const ORDER_RECEIVE_EMAIL = "service@rfn-usa.com";
+
+  if (window.emailjs) {
+    emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+  }
+
+  function safeJsonParse(value, fallback){
+    try { return JSON.parse(value); } catch(e) { return fallback; }
+  }
+
+  function getCart(){
+    const cart = safeJsonParse(localStorage.getItem('rfnCart'), []);
+    return Array.isArray(cart) ? cart : [];
+  }
+
+  function saveCart(cart){
+    localStorage.setItem('rfnCart', JSON.stringify(cart));
+  }
+
+  function clearCart(){
+    localStorage.removeItem('rfnCart');
+  }
+
+  function money(value){
+    const n = Number(value || 0);
+    return '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function escapeHtml(value){
+    return String(value ?? '').replace(/[&<>'"]/g, function(ch){
+      return ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'})[ch];
+    });
+  }
+
+  function showToast(message){
+    const toast = document.getElementById('toast');
+    if(!toast){ alert(message); return; }
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2800);
+  }
+
+  function updateNavCount(){
+    const total = getCart().reduce((sum, item) => sum + Number(item.qty || 1), 0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = total);
+  }
+
+  function buildItemsText(items){
+    return items.map(function(item, index){
+      const qty = Number(item.qty || 1);
+      const unit = Number(item.price ?? item.dealerPrice ?? 0);
+      const line = unit * qty;
+      return [
+        (index + 1) + '.',
+        'Bike: ' + (item.bike || 'RFN'),
+        'Item: ' + (item.name || 'RFN Part'),
+        item.color ? 'Color: ' + item.color : '',
+        'Code: ' + (item.code || 'N/A'),
+        'Qty: ' + qty,
+        'Unit Dealer Price: ' + money(unit),
+        'Line Total: ' + money(line)
+      ].filter(Boolean).join(' ');
+    }).join('\n');
+  }
+
+  function getSubtotal(items){
+    return items.reduce((sum, item) => {
+      const qty = Number(item.qty || 1);
+      const price = Number(item.price ?? item.dealerPrice ?? 0);
+      return sum + (price * qty);
+    }, 0);
+  }
+
+  function renderCart(){
+    const cart = getCart();
+    const empty = document.getElementById('cartEmpty');
+    const content = document.getElementById('cartContent');
+    const itemsEl = document.getElementById('cartItems');
+
+    updateNavCount();
+
+    if(!empty || !content || !itemsEl) return;
+
+    if(cart.length === 0){
+      empty.style.display = 'block';
+      content.style.display = 'none';
+      return;
+    }
+
+    empty.style.display = 'none';
+    content.style.display = 'block';
+    itemsEl.innerHTML = '';
+
+    let totalQty = 0;
+
+    cart.forEach(function(item, idx){
+      const qty = Number(item.qty || 1);
+      const price = Number(item.price ?? item.dealerPrice ?? 0);
+      const lineTotal = price * qty;
+      totalQty += qty;
+
+      const row = document.createElement('div');
+      row.className = 'cart-item';
+      row.innerHTML = `
+        <div class="item-info">
+          <div class="item-bike">${escapeHtml(item.bike || 'RFN Part')}</div>
+          <div class="item-name">${escapeHtml(item.name || 'RFN Part')}</div>
+          <div class="item-code">${escapeHtml(item.code || 'No Code')}</div>
+          ${item.color ? `<div class="item-code" style="color:var(--accent-blue);font-weight:600;">Color: ${escapeHtml(item.color)}</div>` : ''}
+        </div>
+        <div class="item-price">${money(lineTotal)}</div>
+        <div class="qty-control">
+          <button class="qty-btn" type="button" data-idx="${idx}" data-action="dec">−</button>
+          <div class="qty-value">${qty}</div>
+          <button class="qty-btn" type="button" data-idx="${idx}" data-action="inc">+</button>
+        </div>
+        <button class="remove-btn" type="button" data-idx="${idx}" data-action="remove" title="Remove item">×</button>
+      `;
+      itemsEl.appendChild(row);
+    });
+
+    const subtotal = getSubtotal(cart);
+    const itemCount = document.getElementById('itemCount');
+    const subtotalEl = document.getElementById('subtotal');
+    const totalEl = document.getElementById('totalAmount');
+
+    if(itemCount) itemCount.textContent = totalQty;
+    if(subtotalEl) subtotalEl.textContent = money(subtotal);
+    if(totalEl) totalEl.textContent = money(subtotal);
+
+    const preview = document.getElementById('orderPreview');
+    if(preview){
+      let html = '<strong>Order Items</strong>';
+      cart.forEach(function(item){
+        const qty = Number(item.qty || 1);
+        const price = Number(item.price ?? item.dealerPrice ?? 0);
+        html += `<div class="preview-item">${qty}× ${escapeHtml(item.name || 'RFN Part')}${item.color ? ` — Color: ${escapeHtml(item.color)}` : ''} (${escapeHtml(item.code || 'No Code')}) — ${money(price * qty)}</div>`;
+      });
+      html += `<div style="margin-top:10px;font-weight:500;color:var(--text);">Total: ${money(subtotal)}</div>`;
+      preview.innerHTML = html;
+    }
+  }
+
+  document.getElementById('cartItems')?.addEventListener('click', function(e){
+    const btn = e.target.closest('[data-idx]');
+    if(!btn) return;
+
+    const idx = Number(btn.dataset.idx);
+    const action = btn.dataset.action;
+    const cart = getCart();
+
+    if(!cart[idx]) return;
+
+    if(action === 'inc'){
+      const nextQty = Number(cart[idx].qty || 1) + 1;
+      const available = Number(cart[idx].available_stock);
+      if(String(cart[idx].type||cart[idx].category).toLowerCase()==='bike' && Number.isFinite(available) && available >= 0 && nextQty > available){
+        showToast(`Only ${available} available for this bike color`);
+        return;
+      }
+      cart[idx].qty = nextQty;
+    }
+
+    if(action === 'dec'){
+      cart[idx].qty = Number(cart[idx].qty || 1) - 1;
+      if(cart[idx].qty <= 0) cart.splice(idx, 1);
+    }
+
+    if(action === 'remove'){
+      cart.splice(idx, 1);
+      showToast('Item removed from cart');
+    }
+
+    saveCart(cart);
+    renderCart();
+  });
+
+  document.getElementById('clearCartBtn')?.addEventListener('click', function(){
+    if(confirm('Clear all items from cart?')){
+      clearCart();
+      renderCart();
+      showToast('Cart cleared');
+    }
+  });
+
+  document.getElementById('proceedBtn')?.addEventListener('click', function(){
+    const form = document.getElementById('orderForm');
+    if(!form) return;
+    form.classList.add('visible');
+    form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    this.textContent = 'Order Form Below ↓';
+  });
+
+  async function saveOrderToDatabase(cart, data){
+    if (typeof window.rfnGetAccessToken !== 'function') {
+      throw new Error('Authentication is not ready. Please refresh and try again.');
+    }
+
+    const accessToken = await window.rfnGetAccessToken();
+    if (!accessToken) {
+      throw new Error('Your login session has expired. Please log in again.');
+    }
+
+    const response = await fetch('/.netlify/functions/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${accessToken}`
+      },
+      body: JSON.stringify({
+        customer: data,
+        notes: data.notes || '',
+        items: cart
+      })
+    });
+
+    const result = await response.json().catch(() => ({}));
+    if(!response.ok){
+      throw new Error(result.error || 'Could not save order to database.');
+    }
+    return result.order;
+  }
+
+  async function sendOrderEmail(cart, data){
+    const subtotal = getSubtotal(cart);
+
+    const templateParams = {
+      to_email: ORDER_RECEIVE_EMAIL,
+      order_type: 'RFN Parts Order',
+      customer_name: `${data.firstName} ${data.lastName}`,
+      customer_email: data.email,
+      customer_phone: data.phone || 'N/A',
+      shipping_address: `${data.address}\n${data.city}, ${data.province} ${data.postal}\n${data.country}`,
+      order_items: buildItemsText(cart),
+      order_total: money(subtotal),
+      notes: data.notes || 'N/A'
+    };
+
+    return emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+  }
+
+  document.getElementById('contactForm')?.addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const cart = getCart();
+    if(cart.length === 0){ alert('Your cart is empty.'); return; }
+
+    if(!window.emailjs){
+      alert('EmailJS is not loaded. Check internet connection or the EmailJS script.');
+      return;
+    }
+
+    const data = {
+      firstName: document.getElementById('firstName')?.value.trim() || '',
+      lastName: document.getElementById('lastName')?.value.trim() || '',
+      email: document.getElementById('email')?.value.trim() || '',
+      phone: document.getElementById('phone')?.value.trim() || '',
+      address: document.getElementById('address')?.value.trim() || '',
+      city: document.getElementById('city')?.value.trim() || '',
+      province: document.getElementById('province')?.value.trim() || '',
+      postal: document.getElementById('postal')?.value.trim() || '',
+      country: document.getElementById('country')?.value || 'US',
+      notes: document.getElementById('notes')?.value.trim() || ''
+    };
+
+    const required = ['firstName','lastName','email','address','city','province','postal'];
+    for(const field of required){
+      if(!data[field]){
+        alert('Please fill in all required fields.');
+        document.getElementById(field)?.focus();
+        return;
+      }
+    }
+
+    const submitBtn = this.querySelector('button[type="submit"]');
+    const oldText = submitBtn ? submitBtn.textContent : '';
+    if(submitBtn){
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending Order...';
+    }
+
+    try{
+      submitBtn.textContent = 'Saving Order...';
+
+      let savedOrder = null;
+      let databaseError = null;
+
+      try {
+        savedOrder = await saveOrderToDatabase(cart, data);
+      } catch (err) {
+        databaseError = err;
+        console.error('Database save error:', err);
+      }
+
+      submitBtn.textContent = 'Sending Email...';
+
+      try {
+        await sendOrderEmail(cart, data);
+      } catch (err) {
+        console.error('EmailJS send error:', err);
+        const msg = err && (err.text || err.message)
+          ? (err.text || err.message)
+          : 'Unknown EmailJS error';
+        throw new Error('EmailJS failed: ' + msg);
+      }
+
+      // The email was sent successfully. Clear the cart even if database storage failed.
+      clearCart();
+      this.reset();
+      document.getElementById('orderPreview').innerHTML = '<strong>Order Items</strong>';
+      document.getElementById('orderForm')?.classList.remove('visible');
+      const proceedBtn = document.getElementById('proceedBtn');
+      if(proceedBtn) proceedBtn.textContent = 'Proceed to Order →';
+      renderCart();
+
+      if (databaseError) {
+        showToast('Email sent, but database save failed');
+        alert('Order email sent successfully, but the database could not save it. Please check Netlify Functions.');
+      } else {
+        showToast('Order sent successfully');
+        alert('Order saved and sent successfully. Order Number: ' + (savedOrder?.id || 'Created'));
+      }
+    } catch(err){
+      console.error('Order submission error:', err);
+      const msg = err && (err.text || err.message) ? (err.text || err.message) : 'Unknown order error';
+      alert('Order could not be completed: ' + msg);
+    } finally {
+      if(submitBtn){
+        submitBtn.disabled = false;
+        submitBtn.textContent = oldText;
+      }
+    }
+  });
+
+  renderCart();
+})();
+
+function logout(){
+  window.rfnLogout();
+}
+</script>
+</body>
+</html>

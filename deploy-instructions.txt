@@ -1,0 +1,42 @@
+RFN USA DATABASE WEBSITE - NETLIFY DEPLOY
+=========================================
+
+IMPORTANT:
+This version contains Netlify Functions and Netlify Blobs database.
+Do not use the simple static Netlify Drop page by itself, because static drag/drop may not build the server function.
+
+RECOMMENDED METHOD - GITHUB:
+1. Unzip RFN-USA-WEBSITE-DATABASE.zip.
+2. Upload all files and folders to a GitHub repository.
+3. In Netlify, select Add new project > Import an existing project.
+4. Connect the GitHub repository.
+5. Build command: npm run build
+6. Publish directory: .
+7. Functions directory: netlify/functions
+8. Deploy the site.
+9. Open your-domain/admin.html to view saved orders.
+
+ALTERNATIVE METHOD - NETLIFY CLI:
+1. Install Node.js.
+2. Open Terminal in this project folder.
+3. Run: npm install
+4. Run: npx netlify login
+5. Run: npx netlify link
+6. Run: npx netlify deploy --build --prod
+
+DATABASE:
+Netlify Blobs is provisioned automatically when the first order is saved.
+No SQL file, database password, or environment variable is required.
+Store name: rfn-orders
+
+PAGES:
+- login.html       Dealer login
+- index.html       Bikes and parts
+- cart.html        Saves order to database and sends EmailJS email
+- admin.html       Orders database dashboard
+
+TEST:
+1. Add a product to cart.
+2. Submit the order form.
+3. Open /admin.html.
+4. The order should appear with status New.

@@ -1,0 +1,13 @@
+RFN PARTS DASHBOARD RECONNECTED
+
+This version keeps the old working login files unchanged.
+The Parts Inventory dashboard now writes through /api/store-products.
+The catalog pages continue reading the same inventory records.
+
+Netlify environment variables required:
+SUPABASE_URL=https://buprdivnomupwvazrlhl.supabase.co
+SUPABASE_ANON_KEY=your Supabase publishable key
+SUPABASE_SERVICE_ROLE_KEY=your Supabase service_role key
+
+Deploy through GitHub or Netlify CLI so Netlify Functions are built.
+Do not expose SUPABASE_SERVICE_ROLE_KEY in browser files.

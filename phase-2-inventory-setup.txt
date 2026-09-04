@@ -1,0 +1,48 @@
+RFN ADMIN PHASE 2 — SUPABASE STOCK / INVENTORY
+
+WHAT IS CONNECTED
+- Inventory reads all products from public.products.
+- +1 and -1 update products.stock_quantity in Supabase.
+- Editing a product saves stock, prices, name and bike to Supabase.
+- Every stock change creates a row in public.inventory_logs.
+- Completing an order calls set_order_status and deducts stock once.
+- Cancelling a completed order restores stock once.
+- Admin API access requires an authenticated Supabase user that exists in public.admin_users with active=true.
+
+1) SUPABASE SQL
+Run this file once in Supabase SQL Editor:
+  supabase/RFN-Supabase-ALL-IN-ONE.sql
+
+2) ADMIN USER
+Use the exact email that exists in Authentication > Users:
+
+insert into public.admin_users (user_id,email,full_name,role,active)
+select id,email,'Moe','owner',true
+from auth.users
+where lower(email)=lower('hamdanmostafa88@gmail.com')
+on conflict (user_id) do update set
+  email=excluded.email,
+  full_name=excluded.full_name,
+  role=excluded.role,
+  active=true;
+
+3) NETLIFY ENVIRONMENT VARIABLES
+Site configuration > Environment variables:
+  SUPABASE_URL = https://buprdivnomupwvazrlhl.supabase.co
+  SUPABASE_SERVICE_ROLE_KEY = your Supabase service_role secret key
+  ADMIN_EMAILS = hamdanmostafa88@gmail.com   (optional extra protection)
+
+IMPORTANT: Never place SUPABASE_SERVICE_ROLE_KEY in admin/config.js or browser code.
+
+4) BROWSER CONFIG
+admin/config.js must contain only the public URL and publishable/anon key.
+
+5) DEPLOY
+Upload the whole folder/ZIP to Netlify, including:
+- admin/
+- netlify/functions/
+- netlify.toml
+- package.json
+
+LOGIN URL
+https://YOUR-SITE.netlify.app/admin/login.html

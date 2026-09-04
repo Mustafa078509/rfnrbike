@@ -1,0 +1,25 @@
+RFN ADMIN PHASE 1
+
+1) In Supabase SQL Editor run this ONE file:
+   supabase/RFN-Supabase-ALL-IN-ONE.sql
+
+2) In admin/config.js enter your Supabase URL and publishable/anon key.
+
+3) In Netlify Environment Variables add:
+   SUPABASE_URL
+   SUPABASE_SERVICE_ROLE_KEY
+   ADMIN_EMAILS
+
+4) Create your admin user in Supabase Authentication.
+   ADMIN_EMAILS must contain the same email.
+
+5) Deploy the full folder to Netlify.
+
+Admin pages:
+/admin/login.html
+/admin/dashboard.html
+/admin/bikes.html
+/admin/inventory.html
+/admin/orders.html
+
+The Bikes page groups all imported products by bike name. Selecting a bike displays only its own parts and allows quick stock adjustment.

@@ -1,0 +1,2499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RFN ARES Rally Pro — Parts Catalog | RFN USA</title>
+<style>html{visibility:hidden}</style><script type="module" src="/auth-guard.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff;--surface:#f6f6f7;--surface2:#ededf0;--border:#e0e0e4;
+  --accent:#d81e25;--accent2:#a8141a;--accent-blue:#1d4ed8;
+  --text:#16161a;--muted:#6b6b73;--green:#137333;--green-bg:#e9f7ec
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',Arial,sans-serif;min-height:100vh}
+.nav-bar{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-brand{font-size:20px;letter-spacing:3px;color:var(--text);text-decoration:none;font-weight:900}
+.nav-brand span{color:var(--accent)}
+.nav-links{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.nav-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;font-weight:800}
+.nav-link:hover,.nav-link.active{color:var(--accent-blue)}
+.hero{position:relative;background:linear-gradient(135deg,#fff 0%,#eaf0fd 45%,#fbdedd 100%);border-bottom:1px solid var(--border);padding:64px 40px 52px;overflow:hidden;min-height:62vh;display:flex;align-items:center}
+.hero:before{content:'ARES';position:absolute;right:-20px;top:-10px;font-size:220px;color:rgba(216,30,37,.05);letter-spacing:-5px;font-family:'Bebas Neue',Arial,sans-serif;pointer-events:none;line-height:1}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;width:100%}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;width:100%}
+.hero-eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;font-weight:800}
+.hero h1{font-family:'Bebas Neue',Arial,sans-serif;font-size:clamp(64px,10vw,140px);letter-spacing:3px;line-height:.92;color:var(--text)}
+.hero h1 span{color:var(--accent-blue)}
+.hero-sub{margin-top:18px;color:var(--muted);font-size:14px;letter-spacing:.5px;max-width:560px;line-height:1.6}
+.hero-badge{display:inline-block;margin-top:24px;padding:8px 16px;border:1px solid var(--accent);color:var(--accent);font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:800}
+.hero-card{background:#111;border-radius:18px;border:1px solid #222;padding:30px;min-height:260px;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.hero-card h2{font-family:'Bebas Neue',Arial,sans-serif;color:#fff;font-size:72px;letter-spacing:4px;text-align:center;line-height:.95}
+.hero-card h2 span{color:#ef4444}
+.search-box{max-width:760px;margin:40px auto}
+.search-box input{width:100%;padding:18px 24px;background:#111;border:1px solid #333;border-radius:14px;color:#fff;font-size:16px;outline:none}
+.search-box input:focus{border-color:var(--accent)}
+.jump-list{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:-16px auto 30px;max-width:1000px}
+.jump-list a{font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:8px 12px;background:var(--surface)}
+.jump-list a:hover{border-color:var(--accent);color:var(--accent)}
+.section{padding:56px 0 40px;border-bottom:1px solid var(--border)}
+.section-header{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;margin-bottom:36px}
+.section-title{font-family:'Bebas Neue',Arial,sans-serif;font-size:42px;letter-spacing:3px;line-height:1;color:var(--text)}
+.section-title span{display:block;font-size:11px;font-family:'DM Sans',Arial,sans-serif;letter-spacing:4px;color:var(--accent);margin-bottom:6px;font-weight:800}
+.section-sub{margin-top:12px;font-size:13px;color:var(--muted);letter-spacing:.5px}
+.section-img{width:100%;height:320px;object-fit:contain;background:#111;border:1px solid var(--border);border-radius:12px;filter:brightness(.92) contrast(1.08);display:block}
+.parts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
+.part-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;padding:18px 20px;display:flex;flex-direction:column;gap:8px;transition:.2s;position:relative}
+.part-card:hover{border-color:var(--accent);background:var(--surface2);transform:translateY(-3px);box-shadow:0 10px 30px rgba(216,30,37,.18)}
+.part-num{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:800}
+.part-name{font-size:14px;font-weight:700;color:var(--text);line-height:1.45;flex:1;text-transform:capitalize;padding-right:74px}
+.part-code{font-size:10px;color:var(--muted);letter-spacing:1px;font-family:'Courier New',monospace}
+.part-prices{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.price-box{background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+.price-label{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--muted);font-weight:900}
+.retail-price{font-size:17px;text-decoration:line-through;color:#777;font-weight:900;margin-top:2px}
+.dealer-price{font-size:22px;color:var(--accent2);font-weight:900;margin-top:2px}
+.add-btn{background:var(--accent);color:#fff;border:none;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:10px 14px;cursor:pointer;font-weight:900;transition:.15s;border-radius:8px;width:100%;margin-top:6px}
+.add-btn:hover{background:var(--accent2)}
+.stock-tag{position:absolute;right:14px;top:14px;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--green);border:1px solid #b7e1c1;background:var(--green-bg);padding:4px 8px;border-radius:999px;font-weight:900}
+.site-footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 24px;margin-top:20px}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.footer-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);font-weight:900;margin-bottom:10px}
+.footer-inner p,.footer-inner a{font-size:13px;color:var(--muted);line-height:1.8;display:block;text-decoration:none}
+@media(max-width:860px){
+  .hero-grid,.section-header{grid-template-columns:1fr}
+  .hero:before{font-size:120px}
+  .hero{padding:40px 20px;min-height:auto}
+  .hero-card{min-height:180px}
+  .hero-card h2{font-size:48px}
+  .parts-grid{grid-template-columns:1fr}
+  .footer-inner{grid-template-columns:1fr}
+  .section-title{font-size:32px}
+}
+</style>
+</head>
+<script>
+function fixSearch(){
+  const input = document.getElementById('searchInput');
+  if (!input) return;
+
+  input.addEventListener('input', function(){
+    const q = this.value.toLowerCase().trim();
+
+    document.querySelectorAll('.section').forEach(section => {
+      let found = false;
+
+      section.querySelectorAll('.part-card').forEach(card => {
+        const text = card.innerText.toLowerCase();
+        const show = text.includes(q);
+        card.style.display = show ? '' : 'none';
+        if (show) found = true;
+      });
+
+      section.style.display = found || q === '' ? '' : 'none';
+    });
+  });
+}
+
+document.addEventListener('DOMContentLoaded', fixSearch);
+</script>
+
+
+<body>
+<nav class="nav-bar">
+  <a class="nav-brand" href="/"><img alt="RFN USA" src="/assets/rfn-logo.png" style="height:26px;width:auto;display:block" onerror="this.outerHTML='RFN <span>USA</span>'"></a>
+  <div class="nav-links">
+    <a class="nav-link" href="/">Home</a>
+    <a class="nav-link active" href="/#models">Parts</a>
+    <a class="nav-link cart-link" href="/cart">Cart 🛒 <span class="cart-count">0</span></a>
+    <a class="nav-link" href="#" onclick="logout();return false;">Logout</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">Official Parts Catalog · RFN USA</div>
+        <h1>RFN <span>ARES</span><br>RALLY PRO</h1>
+        <p class="hero-sub">Complete exploded-view parts reference with Dealer Price and Retail Price. Add to Cart uses the Dealer Price only.</p>
+        <div class="hero-badge">Electric · Ares Rally Pro Platform</div>
+      </div>
+      <div class="hero-card"><h2>ARES<br><span>PARTS</span></h2></div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="Search part number or description...">
+  </div>
+  <div class="jump-list">
+    <a href="#section-01">01</a><a href="#section-02">02</a><a href="#section-03">03</a><a href="#section-04">04</a><a href="#section-05">05</a><a href="#section-06">06</a><a href="#section-07">07</a><a href="#section-08">08</a><a href="#section-09">09</a><a href="#section-10">10</a><a href="#section-11">11</a>
+  </div>
+</div>
+
+<!-- 01 REAR WHEEL ASSY -->
+<section class="section" id="section-01">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>01 / Parts</span>REAR WHEEL ASSY</div>
+        <p class="section-sub">13 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="https://www.tomrev.com/assets/images/plans/64f0fd6be1bde-ARES_REAR_WHEEL.png" alt="REAR WHEEL ASSY Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Rear Axle</div>
+        <div class="part-code">319003014001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="28.80" data-retail-price="38.88">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Bolt+Brake Disc</div>
+        <div class="part-code">309007010001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$38.88</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$28.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+
+
+
+
+<div class="part-card" data-dealer-price="190.80" data-retail-price="257.58">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Rear RiM Wheel</div>
+        <div class="part-code">307039003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$257.58</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$190.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+
+
+
+
+
+
+
+
+
+<div class="part-card" data-dealer-price="22.40" data-retail-price="18.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Washer+Rear wheel anti-slip bloc</div>
+        <div class="part-code">405006047005</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$18.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$22.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+
+<div class="part-card" data-dealer-price="64.80" data-retail-price="87.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Tire &amp; Inner Tube (Include Tape)</div>
+        <div class="part-code">307007281001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$87.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$64.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+<div class="part-card" data-dealer-price="33.70" data-retail-price="45.49">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Driven Sprocket</div>
+        <div class="part-code">311027003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$45.49</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$33.70</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+
+      <div class="part-card" data-dealer-price="9.60" data-retail-price="12.96">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Rear wheel spacer</div>
+        <div class="part-code">307042001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$12.96</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$9.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+
+
+
+
+
+
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">403030001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404005009001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 02 FRONT WHEEL ASSY -->
+<section class="section" id="section-02">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>02 / Parts</span>FRONT WHEEL ASSY</div>
+        <p class="section-sub">9 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="https://www.tomrev.com/assets/images/plans/64f101921fce6-_ARES_FRONT_WHEEL.png" alt="FRONT WHEEL ASSY Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Front wheel spacer</div>
+        <div class="part-code">307041001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+<div class="part-card" data-dealer-price="33.60" data-retail-price="45.36">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Brake Disc+Bolt</div>
+        <div class="part-code">309007010001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$55.36</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$43.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="185.76" data-retail-price="250.78">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Front Wheel</div>
+        <div class="part-code">307038003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$250.78</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$185.76</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+
+
+<div class="part-card" data-dealer-price="31.60" data-retail-price="41.16">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Front wheel anti-slip block</div>
+        <div class="part-code">307010001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$41.16</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$31.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="93.60" data-retail-price="126.36">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Tire &amp; Inner Tube (Include Tape)</div>
+        <div class="part-code">307007282001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$126.36</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$93.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 03 LINKAGE -->
+<section class="section" id="section-03">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>03 / Parts</span>LINKAGE</div>
+        <p class="section-sub">16 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="assets\linkage.png" alt="LINKAGE Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Outer Nylon sleeve</div>
+        <div class="part-code">305056001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Spacer</div>
+        <div class="part-code">603027001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">O-seal ring</div>
+        <div class="part-code">319075004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Linkage L</div>
+        <div class="part-code">305052002002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Linkage R</div>
+        <div class="part-code">305057001002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Middle Nylon sleeve</div>
+        <div class="part-code">305055001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">T bolt</div>
+        <div class="part-code">401012001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401010004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="9.60" data-retail-price="12.96">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">spacer</div>
+        <div class="part-code">603029002002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$12.96</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$9.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#10</div>
+        <div class="part-name">O seal</div>
+        <div class="part-code">319075002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="9.60" data-retail-price="12.96">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#11</div>
+        <div class="part-name">Middle spacer</div>
+        <div class="part-code">603028001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$12.96</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$9.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#12</div>
+        <div class="part-name">Bearing</div>
+        <div class="part-code">409009002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="50.40" data-retail-price="68.04">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#13</div>
+        <div class="part-name">Linkage Assy</div>
+        <div class="part-code">306008006001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$68.04</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$50.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#14</div>
+        <div class="part-name">Bearing</div>
+        <div class="part-code">409009001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#15</div>
+        <div class="part-name">O seal</div>
+        <div class="part-code">319075003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#16</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404030001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 04 SEAT -->
+<section class="section" id="section-04">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>04 / Parts</span>SEAT</div>
+        <p class="section-sub">8 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="https://www.tomrev.com/assets/images/plans/60887-plan-de-pices-ares--1.jpg" alt="SEAT Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="54.00" data-retail-price="72.90">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Seat</div>
+        <div class="part-code">313020005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$72.90</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$54.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Left middle plastic cover</div>
+        <div class="part-code">304114002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="9.60" data-retail-price="12.96">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Fix pin</div>
+        <div class="part-code">602003052003</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$12.96</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$9.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Right middle plastic cover</div>
+        <div class="part-code">304115002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403004036001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Seat opening stick</div>
+        <div class="part-code">303237001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Buttery bolt</div>
+        <div class="part-code">401015002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="0.80" data-retail-price="1.00">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Washer</div>
+        <div class="part-code">405006063001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$1.00</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$0.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 05 BRAKE ASSY -->
+<section class="section" id="section-05">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>05 / Parts</span>BRAKE ASSY</div>
+        <p class="section-sub">7 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="https://www.tomrev.com/assets/images/plans/65407-plan-de-pices-ares--2.jpg" alt="BRAKE ASSY Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401017001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="28.80" data-retail-price="38.88">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Rear brake bracket</div>
+        <div class="part-code">308057001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$38.88</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$28.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Clip</div>
+        <div class="part-code">318001002002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403001009001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="58.80" data-retail-price="79.38">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Rear brake Assy</div>
+        <div class="part-code">308059008001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$79.38</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$58.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="58.80" data-retail-price="79.38">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Front brake Assy</div>
+        <div class="part-code">308058008001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$79.38</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$58.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Brake pad</div>
+        <div class="part-code">308060002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 06 FRONT FORK -->
+<section class="section" id="section-06">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>06 / Parts</span>FRONT FORK</div>
+        <p class="section-sub">26 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="assets\frontfork.png" alt="FRONT FORK Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Right cover of front fork</div>
+        <div class="part-code">304120002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Left cover of front fork</div>
+        <div class="part-code">304119002003</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404030003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Pipe support</div>
+        <div class="part-code">603001115002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403004037001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="238.80" data-retail-price="322.38">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Front fork</div>
+        <div class="part-code">305053003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$322.38</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$238.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Pipe support</div>
+        <div class="part-code">318100001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="57.60" data-retail-price="77.76">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Bottom triple clamp</div>
+        <div class="part-code">310022136001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$77.76</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$57.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="50.40" data-retail-price="68.04">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">Top triple clamp</div>
+        <div class="part-code">310021034001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$68.04</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$50.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#10</div>
+        <div class="part-name">Steering stem</div>
+        <div class="part-code">608002002005</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="42.00" data-retail-price="56.70">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#11</div>
+        <div class="part-name">Electronic throttle</div>
+        <div class="part-code">315037059001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$56.70</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$42.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="45.60" data-retail-price="61.56">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#12</div>
+        <div class="part-name">Handle bar</div>
+        <div class="part-code">310001149001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$61.56</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$45.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#13</div>
+        <div class="part-name">Handlbe bar holder upper</div>
+        <div class="part-code">310133007001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#14</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401006009001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#15</div>
+        <div class="part-name">Plug</div>
+        <div class="part-code">319078001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#16</div>
+        <div class="part-name">Left grip</div>
+        <div class="part-code">310057147001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#17</div>
+        <div class="part-name">Handlbe bar holder Bottom</div>
+        <div class="part-code">310134007001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#18</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401006007001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="9.60" data-retail-price="12.96">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#19</div>
+        <div class="part-name">Spacer</div>
+        <div class="part-code">310143002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$12.96</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$9.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#20</div>
+        <div class="part-name">Oring</div>
+        <div class="part-code">319034008002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.24" data-retail-price="4.37">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#21</div>
+        <div class="part-name">Bearing</div>
+        <div class="part-code">409011001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.37</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.24</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="26.40" data-retail-price="35.64">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#22</div>
+        <div class="part-name">Main Lock</div>
+        <div class="part-code">318102001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$35.64</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$26.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#23</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403001010001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#24</div>
+        <div class="part-name">Front axle screw plug</div>
+        <div class="part-code">319079002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="30.00" data-retail-price="40.50">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#25</div>
+        <div class="part-name">Front axle</div>
+        <div class="part-code">307027006001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$40.50</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$30.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#26</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403004039001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 07 BATTERY PRESSING MECHANISM -->
+<section class="section" id="section-07">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>07 / Parts</span>BATTERY PRESSING MECHANISM</div>
+        <p class="section-sub">6 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="https://www.tomrev.com/assets/images/plans/64f8cccabaee8-_ARES_BATTERY_PRESSING_MECHANISM.png" alt="BATTERY PRESSING MECHANISM Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Lock torsional spring</div>
+        <div class="part-code">319073001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Battery fixing torsion spring</div>
+        <div class="part-code">319072001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Spring card (bearing clamp)</div>
+        <div class="part-code">410001002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Torsional spring shaft</div>
+        <div class="part-code">609092001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403028001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Torsional spring bushing</div>
+        <div class="part-code">609091001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 08 REAR SWING ARM ASSY -->
+<section class="section" id="section-08">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>08 / Parts</span>REAR SWING ARM ASSY</div>
+        <p class="section-sub">28 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="assets\swing arm.png" alt="REAR SWING ARM ASSY Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Left chain tensioner</div>
+        <div class="part-code">311100001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401003017001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Side stand limit seat</div>
+        <div class="part-code">303115004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401006010001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401009005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401009004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Double tension spring</div>
+        <div class="part-code">303239001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">403029004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">Side stand bushing</div>
+        <div class="part-code">319001303001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#10</div>
+        <div class="part-name">Tension spring retaining pin</div>
+        <div class="part-code">608003019002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="34.80" data-retail-price="46.98">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#11</div>
+        <div class="part-name">Side stand</div>
+        <div class="part-code">303012262001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$46.98</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$34.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#12</div>
+        <div class="part-name">Washer</div>
+        <div class="part-code">405006064001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="25.20" data-retail-price="34.02">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#13</div>
+        <div class="part-name">Side stand fixed seat</div>
+        <div class="part-code">303238001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$34.02</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$25.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="90.00" data-retail-price="121.50">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#14</div>
+        <div class="part-name">Swing arm Right</div>
+        <div class="part-code">306037005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$121.50</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$90.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="90.00" data-retail-price="121.50">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#15</div>
+        <div class="part-name">Swing arm Left</div>
+        <div class="part-code">306037004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$121.50</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$90.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#16</div>
+        <div class="part-name">Rear fork cover</div>
+        <div class="part-code">304034021001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#17</div>
+        <div class="part-name">Bearing</div>
+        <div class="part-code">409010001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="125.28" data-retail-price="169.13">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#18</div>
+        <div class="part-name">Rear shock</div>
+        <div class="part-code">305054001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$169.13</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$125.28</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#19</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404005009001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#20</div>
+        <div class="part-name">Washer</div>
+        <div class="part-code">319077002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404028003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#22</div>
+        <div class="part-name">screw</div>
+        <div class="part-code">403004041001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#23</div>
+        <div class="part-name">screw</div>
+        <div class="part-code">403004040001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#24</div>
+        <div class="part-name">Chain guide</div>
+        <div class="part-code">301062002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#25</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404027001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404028003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#27</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404002008001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#28</div>
+        <div class="part-name">Right chain tensioner</div>
+        <div class="part-code">311101001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 09 FRAME -->
+<section class="section" id="section-09">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>09 / Parts</span>FRAME</div>
+        <p class="section-sub">40 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="assets\frame.png" alt="FRAME Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="70.80" data-retail-price="95.58">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Sub-frame</div>
+        <div class="part-code">606023001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$95.58</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$70.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404028001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Washer</div>
+        <div class="part-code">319077001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403029002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403029001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401006004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Left battery holder</div>
+        <div class="part-code">603001113001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="54.00" data-retail-price="72.90">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Left frame part</div>
+        <div class="part-code">601001479001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$72.90</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$54.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">Cip</div>
+        <div class="part-code">609094001002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#10</div>
+        <div class="part-name">Rubber spacer</div>
+        <div class="part-code">319076001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#11</div>
+        <div class="part-name">Frame reinforcement-left</div>
+        <div class="part-code">601001507005</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#12</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404029001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#13</div>
+        <div class="part-name">Front side plastic fixing bracket</div>
+        <div class="part-code">601001420004</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#14</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404025001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#15</div>
+        <div class="part-name">washer</div>
+        <div class="part-code">405010002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="118.80" data-retail-price="160.38">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#16</div>
+        <div class="part-name">Frame</div>
+        <div class="part-code">303001457002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$160.38</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$118.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#17</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404030003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#18</div>
+        <div class="part-name">Rubber washer</div>
+        <div class="part-code">319016031001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="4.80" data-retail-price="6.48">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#19</div>
+        <div class="part-name">Rear brake tube clip</div>
+        <div class="part-code">318001003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$6.48</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$4.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#20</div>
+        <div class="part-name">Frame reinforcement-right</div>
+        <div class="part-code">601001507006</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#21</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403029003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#22</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404026001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="61.20" data-retail-price="82.62">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#23</div>
+        <div class="part-name">Right frame part</div>
+        <div class="part-code">601001480001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$82.62</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$61.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#24</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403029005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#25</div>
+        <div class="part-name">Right battery holder</div>
+        <div class="part-code">603001114001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#26</div>
+        <div class="part-name">Shock absorber fix holder</div>
+        <div class="part-code">603001112001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#27</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401010001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#28</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401010002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#29</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401010003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#30</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401010001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#31</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401010002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="32.40" data-retail-price="43.74">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#32</div>
+        <div class="part-name">Rear swing arm fix holder</div>
+        <div class="part-code">601001478001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$43.74</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$32.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#33</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404002008001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#34</div>
+        <div class="part-name">Foot rest Right</div>
+        <div class="part-code">606009010001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#35</div>
+        <div class="part-name">Pin</div>
+        <div class="part-code">407008005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="25.20" data-retail-price="34.02">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#36</div>
+        <div class="part-name">Footrest bracket right</div>
+        <div class="part-code">606010006001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$34.02</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$25.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#37</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404005008001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="82.80" data-retail-price="111.78">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#38</div>
+        <div class="part-name">Motor guard</div>
+        <div class="part-code">609088002005</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$111.78</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$82.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="25.20" data-retail-price="34.02">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#39</div>
+        <div class="part-name">Footrest bracket left</div>
+        <div class="part-code">606010005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$34.02</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$25.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#40</div>
+        <div class="part-name">Foot rest left</div>
+        <div class="part-code">606009011001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 10 PLASTIC BODY -->
+<section class="section" id="section-10">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>10 / Parts</span>PLASTIC BODY</div>
+        <p class="section-sub">20 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="assets\plasrickit.png" alt="PLASTIC BODY Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Rear fender</div>
+        <div class="part-code">304009020001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">404028002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Washer</div>
+        <div class="part-code">405006063001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403004038001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Left trim panel of the controller</div>
+        <div class="part-code">304112001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404028002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403005122001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404028003001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">Front &amp; left plastic cover</div>
+        <div class="part-code">304002023001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#10</div>
+        <div class="part-name">Cover of Switch button fix bracket</div>
+        <div class="part-code">318103002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#11</div>
+        <div class="part-name">Switch button fix bracket</div>
+        <div class="part-code">304118001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#12</div>
+        <div class="part-name">Number plate</div>
+        <div class="part-code">304013028001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#13</div>
+        <div class="part-name">Screw</div>
+        <div class="part-code">403004036001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#14</div>
+        <div class="part-name">Front fender</div>
+        <div class="part-code">304015024001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#15</div>
+        <div class="part-name">Front &amp; left plastic cover</div>
+        <div class="part-code">301056004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#16</div>
+        <div class="part-name">Right trim panel of the controller</div>
+        <div class="part-code">304113001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#17</div>
+        <div class="part-name">Top cover part A</div>
+        <div class="part-code">304116001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="18.00" data-retail-price="24.30">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#18</div>
+        <div class="part-name">Storage box</div>
+        <div class="part-code">304117001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$24.30</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$18.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="12.00" data-retail-price="16.20">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#19</div>
+        <div class="part-name">Rear fender protection</div>
+        <div class="part-code">304018015001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$16.20</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$12.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#20</div>
+        <div class="part-name">Cover Nut</div>
+        <div class="part-code">404028002001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- 11 ELECTRICAL SYSTEM -->
+<section class="section" id="section-11">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <div class="section-title"><span>11 / Parts</span>ELECTRICAL SYSTEM</div>
+        <p class="section-sub">21 OEM parts · Retail + Dealer pricing</p>
+      </div>
+      <img class="section-img" src="https://www.tomrev.com/assets/images/plans/60773-electrical-ares-1.jpg" alt="ELECTRICAL SYSTEM Diagram" loading="lazy">
+    </div>
+    <div class="parts-grid">
+      <div class="part-card" data-dealer-price="34.80" data-retail-price="46.98">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Switch Button</div>
+        <div class="part-code">315090001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$46.98</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$34.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Bolt</div>
+        <div class="part-code">401008001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="82.80" data-retail-price="111.78">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">Harness</div>
+        <div class="part-code">315134001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$111.78</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$82.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="2.40" data-retail-price="3.24">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">clip</div>
+        <div class="part-code">609099001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$3.24</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$2.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">Side stand switch</div>
+        <div class="part-code">315203001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="6.00" data-retail-price="8.10">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#6</div>
+        <div class="part-name">Nut</div>
+        <div class="part-code">404032001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$8.10</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$6.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="58.80" data-retail-price="79.38">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#7</div>
+        <div class="part-name">Chain</div>
+        <div class="part-code">311011278001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$79.38</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$58.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="356.40" data-retail-price="481.14">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#8</div>
+        <div class="part-name">Motor</div>
+        <div class="part-code">315031042001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$481.14</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$356.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#9</div>
+        <div class="part-name">Motor spacer</div>
+        <div class="part-code">609093001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="42.00" data-retail-price="56.70">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#10</div>
+        <div class="part-name">DC output line</div>
+        <div class="part-code">315137001001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$56.70</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$42.00</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="291.60" data-retail-price="393.66">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#11</div>
+        <div class="part-name">Controller</div>
+        <div class="part-code">315021382001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$393.66</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$291.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="1198.80" data-retail-price="1618.38">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#12</div>
+        <div class="part-name">Battery</div>
+        <div class="part-code">315006027001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$1,618.38</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$1,198.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#13</div>
+        <div class="part-name">belt</div>
+        <div class="part-code">318027005001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="46.80" data-retail-price="63.18">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#14</div>
+        <div class="part-name">Display</div>
+        <div class="part-code">317001702001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$63.18</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$46.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="3.60" data-retail-price="4.86">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#15</div>
+        <div class="part-name">Display bracket</div>
+        <div class="part-code">601019007008</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$4.86</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$3.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="7.20" data-retail-price="9.72">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#16</div>
+        <div class="part-name">belt</div>
+        <div class="part-code">318027004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$9.72</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$7.20</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="15.60" data-retail-price="21.06">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#1</div>
+        <div class="part-name">Front Sprocket 13T</div>
+        <div class="part-code">311004004001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$21.06</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$15.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="15.60" data-retail-price="21.06">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#2</div>
+        <div class="part-name">Front Sprocket 11T</div>
+        <div class="part-code">311004002002</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$21.06</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$15.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="34.80" data-retail-price="46.98">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#3</div>
+        <div class="part-name">decal kit</div>
+        <div class="part-code">320051001261</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$46.98</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$34.80</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="14.40" data-retail-price="19.44">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#4</div>
+        <div class="part-name">brake lever</div>
+        <div class="part-code">310005012001</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$19.44</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$14.40</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+<div class="part-card" data-dealer-price="225.60" data-retail-price="304.56">
+        <span class="stock-tag">In Stock</span>
+        <div class="part-num">#5</div>
+        <div class="part-name">CHARGER</div>
+        <div class="part-code">315014051003</div>
+        <div class="part-prices">
+          <div class="price-box"><div class="price-label">Retail</div><div class="retail-price">$304.56</div></div>
+          <div class="price-box"><div class="price-label">Dealer</div><div class="dealer-price">$225.60</div></div>
+        </div>
+        <button class="add-btn" type="button">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-label">Contact</div>
+      <p>9300 Harwin Dr. Suite C<br>Houston, TX 77036</p>
+      <a href="mailto:sales@rfn-usa.com">sales@rfn-usa.com</a>
+    </div>
+    <div>
+      <div class="footer-label">Shop</div>
+      <a href="https://www.rfn-usa.com/shop" target="_blank">Shop RFN USA →</a>
+      <a href="https://www.rfn-usa.com/bikes" target="_blank">View Bikes →</a>
+    </div>
+    <div>
+      <div class="footer-label">Follow</div>
+      <a href="https://www.facebook.com/profile.php?id=100093047587560" target="_blank">Facebook</a>
+      <a href="https://www.instagram.com/rfnbikesusa/" target="_blank">Instagram</a>
+      <a href="https://www.youtube.com/@RFN-USA" target="_blank">YouTube</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const BIKE_NAME = "RFN ARES RALLY PRO";
+  function getCart(){ return JSON.parse(localStorage.getItem('rfnCart') || '[]'); }
+  function saveCart(cart){ localStorage.setItem('rfnCart', JSON.stringify(cart)); updateCartCount(); }
+  function updateCartCount(){
+    const total = getCart().reduce((sum,item) => sum + (item.qty||1), 0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = total);
+    document.querySelectorAll('.cart-link').forEach(a => { a.textContent = 'Cart 🛒 ' + total; });
+  }
+  document.getElementById('searchInput')?.addEventListener('keyup', function(){
+    const value = this.value.toLowerCase();
+    document.querySelectorAll('.part-card').forEach(card => {
+      card.style.display = card.innerText.toLowerCase().includes(value) ? '' : 'none';
+    });
+  });
+  document.querySelectorAll('.add-btn').forEach(btn => {
+    btn.addEventListener('click', function(e){
+      e.preventDefault();
+      const card = btn.closest('.part-card');
+      const name = card?.querySelector('.part-name')?.textContent.trim() || 'RFN Part';
+      const code = card?.querySelector('.part-code')?.textContent.trim() || '';
+      const retailPrice = Number(card?.dataset.retailPrice || 0);
+      const dealerPrice = Number(card?.dataset.dealerPrice || 0);
+      const id = BIKE_NAME + '-' + (code || name);
+      const cart = getCart();
+      const existing = cart.find(i => i.id === id);
+      if(existing){
+        existing.qty += 1;
+        existing.price = dealerPrice;
+        existing.dealerPrice = dealerPrice;
+        existing.retailPrice = retailPrice;
+      } else {
+        cart.push({id, bike:BIKE_NAME, name, code, price:dealerPrice, dealerPrice, retailPrice, qty:1});
+      }
+      saveCart(cart);
+      btn.textContent = 'Added ✓';
+      setTimeout(() => btn.textContent = 'Add to Cart', 900);
+    });
+  });
+  updateCartCount();
+})();
+function logout(){ window.rfnLogout(); }
+</script>
+
+<script id="rfn-cart-fix">
+(function(){
+  function safeJsonParse(value, fallback){ try { return JSON.parse(value); } catch(e){ return fallback; } }
+  function getCart(){ const cart = safeJsonParse(localStorage.getItem('rfnCart'), []); return Array.isArray(cart) ? cart : []; }
+  function saveCart(cart){ localStorage.setItem('rfnCart', JSON.stringify(cart)); updateCartCount(); }
+  function priceFromText(text){
+    const m = String(text || '').replace(/,/g,'').match(/\$?\s*([0-9]+(?:\.[0-9]+)?)/);
+    return m ? Number(m[1]) : 0;
+  }
+  function getBikeName(){
+    const h1 = document.querySelector('h1');
+    const title = document.title || 'RFN Parts';
+    return (h1 ? h1.innerText : title).replace(/\s+/g,' ').replace('RFN USA','').trim() || 'RFN Parts';
+  }
+  function updateCartCount(){
+    const total = getCart().reduce((sum,item) => sum + Number(item.qty || 1), 0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = total);
+    document.querySelectorAll('.cart-link').forEach(a => {
+      const span = a.querySelector('.cart-count');
+      if(span) span.textContent = total;
+      else a.textContent = 'Cart 🛒 ' + total;
+    });
+  }
+  function addPartFromCard(card, btn){
+    if(!card) return;
+    const bike = getBikeName();
+    const name = card.querySelector('.part-name')?.textContent.trim() || 'RFN Part';
+    const code = card.querySelector('.part-code')?.textContent.trim() || '';
+    const retailPrice = Number(card.dataset.retailPrice || card.dataset.retail || priceFromText(card.querySelector('.retail-price')?.textContent) || 0);
+    const dealerPrice = Number(card.dataset.dealerPrice || card.dataset.dealer || priceFromText(card.querySelector('.dealer-price')?.textContent) || 0);
+    const id = bike + '-' + (code || name);
+    const cart = getCart();
+    const existing = cart.find(item => item.id === id);
+    if(existing){
+      existing.qty = Number(existing.qty || 1) + 1;
+      existing.price = dealerPrice;
+      existing.dealerPrice = dealerPrice;
+      existing.retailPrice = retailPrice;
+    } else {
+      cart.push({ id, bike, name, code, price: dealerPrice, dealerPrice, retailPrice, qty: 1 });
+    }
+    saveCart(cart);
+    if(btn){
+      const old = btn.textContent;
+      btn.textContent = 'Added ✓';
+      setTimeout(() => btn.textContent = old || 'Add to Cart', 900);
+    }
+  }
+  function bindButtons(){
+    document.querySelectorAll('.add-btn').forEach(oldBtn => {
+      const btn = oldBtn.cloneNode(true); // removes old broken/double listeners
+      oldBtn.parentNode.replaceChild(btn, oldBtn);
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        addPartFromCard(btn.closest('.part-card'), btn);
+      });
+    });
+  }
+  document.addEventListener('DOMContentLoaded', function(){ bindButtons(); updateCartCount(); });
+  if(document.readyState !== 'loading'){ bindButtons(); updateCartCount(); }
+})();
+</script>
+<script src="/parts-database.js?v=20260820-diagram-number-v12"></script>
+</body>
+</html>

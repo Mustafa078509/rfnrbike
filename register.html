@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dealer Registration — RFN USA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="/auth.css">
+</head>
+
+<body>
+  <main class="auth-shell">
+
+    <section class="auth-visual" aria-label="RFN dealer registration">
+      <a class="auth-logo" href="/login.html">
+        <img src="/assets/rfn-logo.png" alt="RFN USA">
+      </a>
+
+      <div class="auth-intro">
+        <p class="auth-kicker">New Dealer Access</p>
+
+        <h1>Create your dealer account.</h1>
+
+        <p>
+          
+        </p>
+      </div>
+    </section>
+
+    <section class="auth-panel">
+      <div class="auth-card">
+
+        <h2>Dealer Registration</h2>
+
+        <p class="auth-description">
+          Enter your dealership and contact information.
+        </p>
+
+        <form id="register-form" novalidate>
+
+          <div class="field">
+            <label for="dealer-name">Dealer name</label>
+
+            <input
+              type="text"
+              id="dealer-name"
+              name="dealer_name"
+              autocomplete="organization"
+              placeholder="Dealership or company name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="contact-person">Contact person</label>
+
+            <input
+              type="text"
+              id="contact-person"
+              name="contact_person"
+              autocomplete="name"
+              placeholder="Full name"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone number</label>
+
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              autocomplete="tel"
+              placeholder="555-555-5555"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="address">Business address</label>
+
+            <input
+              type="text"
+              id="address"
+              name="address"
+              autocomplete="street-address"
+              placeholder="Street, city, state, ZIP code"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="email">Business email</label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              autocomplete="email"
+              placeholder="dealer@company.com"
+              required
+            >
+          </div>
+
+          <div class="field">
+            <label for="password">Password</label>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              autocomplete="new-password"
+              minlength="8"
+              placeholder="Create a password"
+              required
+            >
+          </div>
+
+          <p class="password-note">
+            Use at least 8 characters.
+          </p>
+
+          <button
+            class="primary-button"
+            id="submit-button"
+            type="submit"
+          >
+            Create account
+          </button>
+
+          <div
+            id="status"
+            class="status"
+            role="alert"
+            aria-live="polite"
+          ></div>
+
+        </form>
+
+        <p class="auth-switch">
+          Already registered?
+          <a href="/login.html">Return to login</a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module">
+    import {
+      AuthError,
+      MissingIdentityError,
+      getUser,
+      signup
+    } from './identity-client.js';
+
+    const currentUser = await getUser();
+
+    if (currentUser) {
+      window.location.replace('/index.html');
+    }
+
+    const form = document.querySelector('#register-form');
+    const button = document.querySelector('#submit-button');
+    const status = document.querySelector('#status');
+
+    function showStatus(message, type = 'error') {
+      status.textContent = message;
+      status.className = `status ${type}`;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const dealerName =
+        document.querySelector('#dealer-name').value.trim();
+
+      const contactPerson =
+        document.querySelector('#contact-person').value.trim();
+
+      const phone =
+        document.querySelector('#phone').value.trim();
+
+      const address =
+        document.querySelector('#address').value.trim();
+
+      const email =
+        document.querySelector('#email').value.trim().toLowerCase();
+
+      const password =
+        document.querySelector('#password').value;
+
+      if (
+        !dealerName ||
+        !contactPerson ||
+        !phone ||
+        !address ||
+        !email ||
+        !password
+      ) {
+        showStatus('Complete all registration fields.');
+        return;
+      }
+
+      if (password.length < 8) {
+        showStatus('Password must contain at least 8 characters.');
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = 'Creating account…';
+      status.textContent = '';
+      status.className = 'status';
+
+      try {
+        const result = await signup(email, password, {
+          dealer_name: dealerName,
+          contact_person: contactPerson,
+          full_name: contactPerson,
+          phone: phone,
+          address: address,
+          email: email,
+          role: 'dealer'
+        });
+
+        if (result.requiresEmailConfirmation) {
+          showStatus(
+            'Account created. Check your email to confirm the account, then return to login.',
+            'success'
+          );
+
+          form.reset();
+        } else {
+          showStatus(
+            'Account created. Opening the dealer portal…',
+            'success'
+          );
+
+          window.setTimeout(() => {
+            window.location.replace('/index.html');
+          }, 500);
+        }
+
+      } catch (error) {
+
+        if (error instanceof MissingIdentityError) {
+          showStatus(
+            'Dealer registration is not available yet. Please try again shortly.'
+          );
+
+        } else if (
+          error instanceof AuthError &&
+          error.status === 422
+        ) {
+          showStatus(
+            'That email is already registered or the account details are invalid.'
+          );
+
+        } else if (
+          error instanceof AuthError &&
+          error.status === 403
+        ) {
+          showStatus(
+            'New registrations are currently closed.'
+          );
+
+        } else if (error instanceof AuthError) {
+          showStatus(error.message);
+
+        } else {
+          console.error('Registration error:', error);
+
+          showStatus(
+            'Unable to create the account right now. Please try again.'
+          );
+        }
+
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Create account';
+      }
+    });
+  </script>
+</body>
+</html>

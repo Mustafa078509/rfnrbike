@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@netlify/blobs": "^10.7.9",
+    "@netlify/identity": "^1.2.0"
+  },
+  "scripts": {
+    "build": "echo \"Static RFN site ready\""
+  }
+}
