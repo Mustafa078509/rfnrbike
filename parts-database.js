@@ -263,6 +263,7 @@
     card.dataset.dealerPrice = String(dealer);
     card.dataset.retailPrice = String(retail);
     card.dataset.sectionKey = product.section_key || '';
+    card.dataset.bike = product.bike || '';
 
     const name = card.querySelector('.part-name');
     if (name && product.name) name.textContent = product.name;
@@ -637,7 +638,7 @@
       const id = `${card.dataset.productId || code || name}`;
       const existing = cart.find(item => String(item.productId || item.id) === id);
       if (existing) existing.qty = Number(existing.qty || 1) + 1;
-      else cart.push({ id, productId:card.dataset.productId || '', name, code, price:dealerPrice, dealerPrice, retailPrice, qty:1 });
+      else cart.push({ id, productId:card.dataset.productId || '', bike:card.dataset.bike || 'RFN', name, code, price:dealerPrice, dealerPrice, retailPrice, qty:1 });
       localStorage.setItem('rfnCart', JSON.stringify(cart));
       document.querySelectorAll('.cart-count').forEach(el => el.textContent = cart.reduce((sum,item)=>sum+Number(item.qty||1),0));
       const old = generatedButton.textContent;
@@ -665,6 +666,7 @@
         if (item) {
           item.productId = card.dataset.productId;
           item.stockQuantity = Number(card.dataset.stockQuantity || 0);
+          item.bike = card.dataset.bike || item.bike || 'RFN';
           localStorage.setItem('rfnCart', JSON.stringify(cart));
         }
       } catch (error) {
