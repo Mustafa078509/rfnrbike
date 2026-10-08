@@ -563,6 +563,17 @@ body{background:#fff;color:var(--text)}
 }
 </style>
 
+
+<style id="rfn-bike-hover-specs">
+.bike-photo-spec-wrap{position:relative;width:100%;margin-bottom:12px;overflow:hidden;border-radius:5px;background:#fff}
+.bike-photo-spec-wrap>.bike-thumb{margin-bottom:0!important;width:100%}
+.bike-photo-spec-overlay{position:absolute;inset:0;background:rgba(255,255,255,.97);opacity:0;visibility:hidden;transition:opacity .18s ease,visibility .18s ease;display:flex;flex-direction:column;justify-content:center;padding:13px;overflow:auto;pointer-events:none;border-top:4px solid #df202c;border-bottom:4px solid #174ba0}
+.bike-photo-spec-wrap:hover .bike-photo-spec-overlay,.bike-photo-spec-wrap:focus-within .bike-photo-spec-overlay{opacity:1;visibility:visible}
+.bike-photo-spec-title{font-size:13px;font-weight:900;color:#d92332;margin-bottom:4px}
+.bike-photo-spec-row{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid #dce5f0;padding:3px 0;color:#244677;font-size:11px;line-height:1.3}
+.bike-photo-spec-row strong{color:#172d53;text-align:right}
+@media(hover:none){.bike-photo-spec-wrap{cursor:pointer}.bike-photo-spec-wrap:active .bike-photo-spec-overlay{opacity:1;visibility:visible}}
+</style>
 </head>
 <body>
 <nav class="nav-bar">
@@ -1083,5 +1094,27 @@ function logout(){
 })();
 </script>
 
+
+<script id="rfn-bike-hover-specs-script">
+(function(){
+ const specifications={"WARRIOR SX-E5":[["Peak Power","5 kW"],["Battery","960 Wh (1200 Wh optional)"],["Top Speed","40 mph"],["Range","28 miles"],["Wheels","12 / 10 in"],["Seat Height","26 in"]],"WARRIOR SX-E8":[["Rated Power","5 kW"],["Battery","2100 Wh"],["Top Speed","53 mph"],["Range","38 miles"],["Wheels","14 / 12 in"],["Seat Height","30 in"]],"WARRIOR SX-E15":[["Peak Power","15 kW"],["Battery","2960 Wh"],["Top Speed","58 mph"],["Range","50 miles"],["Wheels","19 / 16 in"],["Seat Height","35 in"]],"RFN RALLY":[["Peak Power","12.5 kW"],["Battery","2590 Wh (site listing)"],["Top Speed","50 mph"],["Seat Height","33.86 in"],["Wheels","19 / 18 in"]],"RFN ENDURANCE RALLY PRO":[["Peak Power","12.5 kW"],["Battery","3132 Wh / 72 V"],["Charging","4.5 hours (0–100%)"],["Seat Height","33.86 in"],["Front Suspension","200 mm"]],"RFN E2":[["Specifications","Awaiting model verification"]],"WARRIOR SX-E15 PLUS":[["Specifications","Awaiting Plus-specific verification"]],"RFN SX-E350":[["Specifications","Awaiting model verification"]],"RFN SX-E500":[["Specifications","Awaiting model verification"]],"EVO 16":[["Specifications","Awaiting model verification"]],"EVO 18":[["Specifications","Awaiting model verification"]],"EVO 20":[["Specifications","Awaiting model verification"]]};
+ function normalize(value){return (value||'').toUpperCase().replace(/[^A-Z0-9]+/g,' ').trim();}
+ function specsFor(name){const key=normalize(name);for(const [model,rows] of Object.entries(specifications)){if(normalize(model)===key)return rows;}
+ if(key.includes('E15')&&key.includes('PLUS'))return specifications['WARRIOR SX-E15 PLUS'];
+ if(key.includes('E500'))return specifications['RFN SX-E500'];if(key.includes('E350'))return specifications['RFN SX-E350'];
+ for(const model of ['EVO 16','EVO 18','EVO 20'])if(key.includes(model))return specifications[model];
+ return [['Specifications','Awaiting model verification']];}
+ function apply(){document.querySelectorAll('.sale-bike').forEach(card=>{
+ const img=card.querySelector('img.bike-thumb');if(!img||img.parentElement.classList.contains('bike-photo-spec-wrap'))return;
+ const name=card.dataset.name||img.alt||'RFN Bike';const wrapper=document.createElement('div');wrapper.className='bike-photo-spec-wrap';
+ const overlay=document.createElement('div');overlay.className='bike-photo-spec-overlay';overlay.setAttribute('aria-label',name+' specifications');
+ const heading=document.createElement('div');heading.className='bike-photo-spec-title';heading.textContent=name;overlay.appendChild(heading);
+ specsFor(name).forEach(([label,value])=>{const row=document.createElement('div');row.className='bike-photo-spec-row';const a=document.createElement('span');a.textContent=label;const b=document.createElement('strong');b.textContent=value;row.append(a,b);overlay.appendChild(row)});
+ img.parentNode.insertBefore(wrapper,img);wrapper.append(img,overlay);
+ });}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
+ new MutationObserver(()=>apply()).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
 </body>
 </html>
