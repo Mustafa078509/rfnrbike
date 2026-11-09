@@ -820,7 +820,7 @@ body{background:#fff;color:var(--text)}
       });
     });
 
-    card.querySelector('.add-bike-btn')?.addEventListener('click', () => {
+    card.querySelector('.add-bike-btn, .out-stock-btn')?.addEventListener('click', () => {
       const cart = getCart();
       cart.push({
         category: 'bike',
