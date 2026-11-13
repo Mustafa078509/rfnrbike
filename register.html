@@ -1,296 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Dealer Registration — RFN USA</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
-
-  <link rel="stylesheet" href="/auth.css">
-</head>
-
-<body>
-  <main class="auth-shell">
-
-    <section class="auth-visual" aria-label="RFN dealer registration">
-      <a class="auth-logo" href="/login.html">
-        <img src="/assets/rfn-logo.png" alt="RFN USA">
-      </a>
-
-      <div class="auth-intro">
-        <p class="auth-kicker">New Dealer Access</p>
-
-        <h1>Create your dealer account.</h1>
-
-        <p>
-          
-        </p>
-      </div>
-    </section>
-
-    <section class="auth-panel">
-      <div class="auth-card">
-
-        <h2>Dealer Registration</h2>
-
-        <p class="auth-description">
-          Enter your dealership and contact information.
-        </p>
-
-        <form id="register-form" novalidate>
-
-          <div class="field">
-            <label for="dealer-name">Dealer name</label>
-
-            <input
-              type="text"
-              id="dealer-name"
-              name="dealer_name"
-              autocomplete="organization"
-              placeholder="Dealership or company name"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <label for="contact-person">Contact person</label>
-
-            <input
-              type="text"
-              id="contact-person"
-              name="contact_person"
-              autocomplete="name"
-              placeholder="Full name"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone number</label>
-
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              autocomplete="tel"
-              placeholder="555-555-5555"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <label for="address">Business address</label>
-
-            <input
-              type="text"
-              id="address"
-              name="address"
-              autocomplete="street-address"
-              placeholder="Street, city, state, ZIP code"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <label for="email">Business email</label>
-
-            <input
-              type="email"
-              id="email"
-              name="email"
-              autocomplete="email"
-              placeholder="dealer@company.com"
-              required
-            >
-          </div>
-
-          <div class="field">
-            <label for="password">Password</label>
-
-            <input
-              type="password"
-              id="password"
-              name="password"
-              autocomplete="new-password"
-              minlength="8"
-              placeholder="Create a password"
-              required
-            >
-          </div>
-
-          <p class="password-note">
-            Use at least 8 characters.
-          </p>
-
-          <button
-            class="primary-button"
-            id="submit-button"
-            type="submit"
-          >
-            Create account
-          </button>
-
-          <div
-            id="status"
-            class="status"
-            role="alert"
-            aria-live="polite"
-          ></div>
-
-        </form>
-
-        <p class="auth-switch">
-          Already registered?
-          <a href="/login.html">Return to login</a>
-        </p>
-
-      </div>
-    </section>
-
-  </main>
-
-  <script type="module">
-    import {
-      AuthError,
-      MissingIdentityError,
-      getUser,
-      signup
-    } from './identity-client.js';
-
-    const currentUser = await getUser();
-
-    if (currentUser) {
-      window.location.replace('/index.html');
-    }
-
-    const form = document.querySelector('#register-form');
-    const button = document.querySelector('#submit-button');
-    const status = document.querySelector('#status');
-
-    function showStatus(message, type = 'error') {
-      status.textContent = message;
-      status.className = `status ${type}`;
-    }
-
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-
-      const dealerName =
-        document.querySelector('#dealer-name').value.trim();
-
-      const contactPerson =
-        document.querySelector('#contact-person').value.trim();
-
-      const phone =
-        document.querySelector('#phone').value.trim();
-
-      const address =
-        document.querySelector('#address').value.trim();
-
-      const email =
-        document.querySelector('#email').value.trim().toLowerCase();
-
-      const password =
-        document.querySelector('#password').value;
-
-      if (
-        !dealerName ||
-        !contactPerson ||
-        !phone ||
-        !address ||
-        !email ||
-        !password
-      ) {
-        showStatus('Complete all registration fields.');
-        return;
-      }
-
-      if (password.length < 8) {
-        showStatus('Password must contain at least 8 characters.');
-        return;
-      }
-
-      button.disabled = true;
-      button.textContent = 'Creating account…';
-      status.textContent = '';
-      status.className = 'status';
-
-      try {
-        const result = await signup(email, password, {
-          dealer_name: dealerName,
-          contact_person: contactPerson,
-          full_name: contactPerson,
-          phone: phone,
-          address: address,
-          email: email,
-          role: 'dealer'
-        });
-
-        if (result.requiresEmailConfirmation) {
-          showStatus(
-            'Account created. Check your email to confirm the account, then return to login.',
-            'success'
-          );
-
-          form.reset();
-        } else {
-          showStatus(
-            'Account created. Opening the dealer portal…',
-            'success'
-          );
-
-          window.setTimeout(() => {
-            window.location.replace('/index.html');
-          }, 500);
-        }
-
-      } catch (error) {
-
-        if (error instanceof MissingIdentityError) {
-          showStatus(
-            'Dealer registration is not available yet. Please try again shortly.'
-          );
-
-        } else if (
-          error instanceof AuthError &&
-          error.status === 422
-        ) {
-          showStatus(
-            'That email is already registered or the account details are invalid.'
-          );
-
-        } else if (
-          error instanceof AuthError &&
-          error.status === 403
-        ) {
-          showStatus(
-            'New registrations are currently closed.'
-          );
-
-        } else if (error instanceof AuthError) {
-          showStatus(error.message);
-
-        } else {
-          console.error('Registration error:', error);
-
-          showStatus(
-            'Unable to create the account right now. Please try again.'
-          );
-        }
-
-      } finally {
-        button.disabled = false;
-        button.textContent = 'Create account';
-      }
-    });
-  </script>
-</body>
-</html>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RFN USA — Dealer Registration</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#22516e;background:#f2fbff}*{box-sizing:border-box}body{margin:0}
+header{background:linear-gradient(90deg,#66d1ff,#38bdf8);border-bottom:4px solid #e3343c;padding:20px 5%;display:flex;align-items:center;justify-content:space-between;color:white}
+.brand{display:flex;align-items:flex-end;gap:11px;font-weight:900}.brand .rfn{font-size:31px;letter-spacing:1px;font-style:italic;transform:skewX(-16deg);line-height:1}.brand .usa{font-size:25px;font-style:italic;transform:skewX(-14deg);color:#df3541}.brand .label{font-size:12px;font-weight:500}
+main{max-width:1320px;margin:auto;padding:30px 20px 70px}
+h1{margin:0 0 20px;font-size:30px;color:#145b9a}.cols{display:grid;grid-template-columns:minmax(360px,.95fr) minmax(420px,1.3fr);gap:22px;align-items:start}
+.card{background:white;border:1px solid #c8dcf0;border-radius:13px;box-shadow:0 5px 25px #1234 0;overflow:hidden}
+.card h2{font-size:19px;margin:0;padding:20px;border-bottom:1px solid #e5eaf0;color:#155c99}
+.form{padding:22px}.sect{color:#269ccf;font-size:13px;font-weight:800;border-bottom:1px solid #dfeef6;margin:16px 0 15px;padding-bottom:9px}
+.field{margin-bottom:14px}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:7px}.field input{display:block;width:100%;padding:11px 12px;border:1px solid #cbdce9;border-radius:7px;font:inherit;font-size:14px}.field input:focus{outline:2px solid #a0dcfc}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.docs{height:510px;overflow:auto;background:#f8fcff;padding:22px;white-space:pre-wrap;font-size:13px;line-height:1.55;color:#1f3345;border-top:1px solid #e4f1f8;border-bottom:1px solid #e4f1f8;overscroll-behavior:contain}
+.track{height:5px;background:#e1f1fa}.track div{width:0;height:100%;background:#e3343c}
+.accept{padding:19px 22px}.accept label{display:flex;gap:11px;font-size:14px;line-height:1.5;font-weight:600;align-items:flex-start}
+.accept input{height:19px;width:19px;accent-color:#e3343c;margin:1px 0 0}.accept label.locked{opacity:.45}
+.hint{color:#718b9b;font-size:12px;margin:12px 0}.button{border:0;background:#dc303c;border-radius:8px;color:#fff;font-size:15px;font-weight:bold;padding:14px;width:100%;cursor:pointer}.button:disabled{background:#b8c9d2;cursor:not-allowed}
+#status{margin-top:15px;font-size:13px;line-height:1.5}#status.error{color:#a01820}#status.success{color:#137547}
+footer{text-align:center;margin:22px;color:#607a90;font-size:13px}a{color:#176aa0}
+@media(max-width:900px){.cols{grid-template-columns:1fr}.docs{height:440px}}
+@media(max-width:550px){.pair{grid-template-columns:1fr}}
+</style></head><body>
+<header><div class="brand"><span class="rfn">RFN</span><span class="usa">USA</span><span class="label">Dealer Portal</span></div></header>
+<main><h1>Dealer Registration</h1><div class="cols">
+<section class="card"><h2>Dealer Information</h2><form class="form" id="registration" novalidate>
+<div class="sect">Business Information</div>
+<div class="field"><label for="dealer-name">Dealer / Business Name *</label><input id="dealer-name" autocomplete="organization" required maxlength="255"></div>
+<div class="field"><label for="contact-person">Authorized Contact Full Name *</label><input id="contact-person" autocomplete="name" required maxlength="255"></div>
+<div class="field"><label for="contact-title">Contact Title / Position *</label><input id="contact-title" required maxlength="255" placeholder="Owner / Manager"></div>
+<div class="pair"><div class="field"><label for="phone">Business Phone *</label><input id="phone" autocomplete="tel" type="tel" required maxlength="60"></div>
+<div class="field"><label for="email">Business Email *</label><input id="email" autocomplete="email" type="email" required maxlength="255"></div></div>
+<div class="sect">Dealership Address</div>
+<div class="field"><label for="address">Street Address *</label><input id="address" autocomplete="street-address" required maxlength="255"></div>
+<div class="pair"><div class="field"><label for="city">City *</label><input id="city" autocomplete="address-level2" required maxlength="100"></div>
+<div class="field"><label for="state">State *</label><input id="state" autocomplete="address-level1" required maxlength="80"></div></div>
+<div class="pair"><div class="field"><label for="zip">ZIP Code *</label><input id="zip" autocomplete="postal-code" required maxlength="20"></div>
+<div class="field"><label for="country">Country</label><input id="country" autocomplete="country-name" value="United States" maxlength="100"></div></div>
+<div class="sect">Portal Login</div>
+<div class="pair"><div class="field"><label for="password">Password *</label><input id="password" type="password" minlength="8" autocomplete="new-password" required></div>
+<div class="field"><label for="confirm-password">Confirm Password *</label><input id="confirm-password" type="password" minlength="8" autocomplete="new-password" required></div></div>
+<div id="status" role="alert" aria-live="polite"></div>
+<button class="button" id="submit-button" type="submit" disabled>I Agree &amp; Submit Dealer Registration</button>
+</form></section>
+<section class="card"><h2>RFN USA Dealer Agreement</h2><div class="track"><div id="progress"></div></div>
+<div class="docs" id="agreement" role="region" tabindex="0" aria-label="Full RFN USA Dealer Agreement">Loading agreement…</div>
+<div class="accept"><div class="hint" id="scroll-hint">Scroll to the bottom of the agreement to enable acceptance.</div>
+<label class="locked" id="check-label"><input id="agree" type="checkbox" disabled> I have read and agree to the full RFN USA Dealer Agreement, including all terms and conditions.</label></div>
+</section></div>
+<footer>Already registered? <a href="/login.html">Return to login</a></footer></main>
+<script type="module">
+import{getUser}from'./identity-client.js';
+const $=id=>document.getElementById(id);
+let reachedEnd=false,loaded=false,busy=false;
+const form=$('registration'),button=$('submit-button'),check=$('agree'),docs=$('agreement');
+function state(){button.disabled=!loaded||!reachedEnd||!check.checked||busy}
+function status(message,kind='error'){$('status').textContent=message;$('status').className=kind}
+function track(){
+ if(!loaded)return;
+ const distance=docs.scrollHeight-docs.clientHeight;
+ const percent=distance<=0?100:Math.min(100,100*docs.scrollTop/distance);
+ $('progress').style.width=percent+'%';
+ if(!reachedEnd&&percent>=99.5){
+   reachedEnd=true;check.disabled=false;$('check-label').classList.remove('locked');
+   $('scroll-hint').textContent='You can now accept the agreement.';
+ }
+ state();
+}
+try{
+ const existing=await getUser();
+ if(existing){location.replace('/index.html')}
+ const res=await fetch('/assets/rfn-dealer-agreement.txt',{cache:'no-store'});
+ if(!res.ok)throw Error('Unable to load agreement.');
+ const text=await res.text();
+ if(text.length<4000||!text.includes('Indemnification:')||!text.includes('Termination:'))throw Error('Agreement could not be verified.');
+ docs.textContent=text;loaded=true;track();
+}catch(e){docs.textContent='Agreement is temporarily unavailable. Please contact RFN USA Sales.';status(e.message)}
+docs.addEventListener('scroll',track);
+check.addEventListener('change',state);
+form.addEventListener('submit',async e=>{
+ e.preventDefault();
+ if(!loaded||!reachedEnd||!check.checked){status('Read and accept the full Dealer Agreement before registering.');return}
+ if(!form.reportValidity())return;
+ if($('password').value!==$('confirm-password').value){status('Passwords do not match.');return}
+ const address=[$('address').value,$('city').value,$('state').value,$('zip').value,$('country').value].map(x=>x.trim()).filter(Boolean).join(', ');
+ const dealer={dealer_name:$('dealer-name').value.trim(),contact_person:$('contact-person').value.trim(),contact_title:$('contact-title').value.trim(),phone:$('phone').value.trim(),email:$('email').value.trim().toLowerCase(),address};
+ busy=true;state();button.textContent='Creating account…';status('');
+ try{
+  const res=await fetch('/api/dealer-register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({dealer,password:$('password').value,accepted:true,agreement_id:'RFN-USA-DEALER-AGREEMENT-2026-02-17'})});
+  const result=await res.json();if(!res.ok)throw Error(result.error||'Unable to register.');
+  status(result.requiresEmailConfirmation?'Registration submitted and agreement stored. Check your email to confirm your account.':'Account created and agreement stored. Please log in.','success');
+  form.reset();check.checked=false;reachedEnd=false;check.disabled=true;$('check-label').classList.add('locked');
+  setTimeout(()=>location.assign('/login.html'),2500);
+ }catch(err){status(err.message)}
+ finally{busy=false;button.textContent='I Agree & Submit Dealer Registration';state()}
+});
+</script></body></html>
