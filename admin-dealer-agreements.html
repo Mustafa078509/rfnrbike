@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RFN USA | Dealer Agreements</title>
+<style>
+:root{font-family:Arial,sans-serif;color:#24445c;background:#f2fbff}*{box-sizing:border-box}
+body{margin:0}header{background:#53c6f5;border-bottom:4px solid #df3541;padding:20px 5%;display:flex;align-items:center;justify-content:space-between}
+header strong{font-size:26px;color:white;font-style:italic;transform:skewX(-12deg)}
+header strong span{color:#e73540}header a{color:#123e63}
+main{max-width:1200px;margin:auto;padding:38px 20px}
+h1{font-size:28px;margin:0 0 10px}.card{background:white;border:1px solid #c6e4f4;border-radius:12px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:720px}th,td{padding:14px;border-bottom:1px solid #e2edf4;text-align:left}
+th{background:#eaf8ff}button{background:#df3541;color:white;border:0;border-radius:7px;padding:9px 13px;cursor:pointer}
+button:disabled{opacity:.5}#status{padding:15px 0}#error{color:#a22}
+</style></head><body>
+<header><strong>RFN <span>USA</span></strong><a href="/admin.html">Back to Admin Portal</a></header>
+<main><h1>Dealer Agreements</h1><p>Private electronic acceptance records</p>
+<div id="status">Verifying administrator access…</div><div id="error" role="alert"></div>
+<div class="card"><table><thead><tr><th>Dealer</th><th>Representative</th><th>Contact</th><th>Accepted (UTC)</th><th>PDF</th></tr></thead><tbody id="records"></tbody></table></div>
+</main>
+<script type="module">
+import {getAccessToken} from './identity-client.js';
+const status=document.querySelector('#status'),error=document.querySelector('#error'),tbody=document.querySelector('#records');
+function cell(text){const el=document.createElement('td');el.textContent=text??'';return el}
+try{
+ const token=await getAccessToken();
+ if(!token)throw Error('Log in with your admin account first.');
+ const r=await fetch('/api/dealer-agreements',{headers:{Authorization:'Bearer '+token},cache:'no-store'});
+ const data=await r.json();if(!r.ok)throw Error(data.error||'Unable to load agreements');
+ status.textContent=data.agreements.length+' agreement records';
+ for(const item of data.agreements){
+   const tr=document.createElement('tr');
+   tr.append(cell(item.dealer_name),cell(item.contact_person),cell(item.email+' / '+item.phone),cell(item.accepted_at));
+   const td=document.createElement('td'),button=document.createElement('button');button.textContent='Download PDF';
+   button.addEventListener('click',async()=>{
+     button.disabled=true;
+     try{
+       const res=await fetch('/api/dealer-agreements?file='+encodeURIComponent(item.user_id),{headers:{Authorization:'Bearer '+token},cache:'no-store'});
+       if(!res.ok)throw Error((await res.json()).error||'Download failed');
+       const url=URL.createObjectURL(await res.blob()),link=document.createElement('a');
+       link.href=url;link.download='RFN-Dealer-Agreement-'+item.user_id+'.pdf';link.click();
+       setTimeout(()=>URL.revokeObjectURL(url),30000);
+     }catch(e){error.textContent=e.message}finally{button.disabled=false}
+   });td.append(button);tr.append(td);tbody.append(tr);
+ }
+}catch(e){status.textContent='';error.textContent=e.message}
+</script></body></html>
