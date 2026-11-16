@@ -13,6 +13,11 @@ export async function handler(event){
   const user=await verified.json();
   if(!user.email_confirmed_at||!ADMIN.includes(String(user.email||'').toLowerCase()))return response(403,{error:'Admin access only'});
   const headers={apikey:SECRET,Authorization:'Bearer '+SECRET};
+  // Require the user's server-stored admin role, not just a matching email.
+  const roles=await fetch(BASE+'/rest/v1/profiles?id=eq.'+encodeURIComponent(user.id)+'&select=role',{headers});
+  if(!roles.ok)return response(503,{error:'Unable to verify administrator role'});
+  const profiles=await roles.json();
+  if(!Array.isArray(profiles)||profiles.length!==1||profiles[0].role!=='admin')return response(403,{error:'Admin role required'});
   const file=event.queryStringParameters?.file;
   if(file){
    if(!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(file))return response(400,{error:'Invalid file identifier'});
